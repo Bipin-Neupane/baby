@@ -10,7 +10,7 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [showUserMenu, setShowUserMenu] = useState(false)
   const [showSearch, setShowSearch] = useState(false)
-  const { itemCount } = useCart()
+  const { itemCount, isLoaded } = useCart()
   const { user, isAdmin, logout } = useAuth()
   
   // Create refs for the dropdown elements
@@ -19,10 +19,12 @@ export default function Header() {
   
   // Check if WishlistContext exists
   let wishlistCount = 0
+  let wishlistLoaded = true
   try {
     const { useWishlist } = require('@/contexts/WishlistContext')
     const wishlistHook = useWishlist()
     wishlistCount = wishlistHook?.itemCount || 0
+    wishlistLoaded = wishlistHook?.isLoaded || false
   } catch (error) {
     // Wishlist context not available
   }
@@ -117,10 +119,13 @@ export default function Header() {
               {/* Wishlist */}
               <Link href="/wishlist" className="p-2 hover:bg-gray-100 rounded-lg transition-colors relative">
                 <Heart className="w-5 h-5 text-gray-700" />
-                {wishlistCount > 0 && (
+                {wishlistLoaded && wishlistCount > 0 && (
                   <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
                     {wishlistCount}
                   </span>
+                )}
+                {!wishlistLoaded && (
+                  <span className="absolute -top-1 -right-1 w-2 h-2 bg-gray-400 rounded-full animate-pulse"></span>
                 )}
               </Link>
 
@@ -218,10 +223,13 @@ export default function Header() {
               {/* Cart */}
               <Link href="/cart" className="p-2 hover:bg-gray-100 rounded-lg transition-colors relative">
                 <ShoppingCart className="w-5 h-5 text-gray-700" />
-                {itemCount > 0 && (
+                {isLoaded && itemCount > 0 && (
                   <span className="absolute -top-1 -right-1 w-5 h-5 bg-purple-600 text-white text-xs rounded-full flex items-center justify-center">
                     {itemCount}
                   </span>
+                )}
+                {!isLoaded && (
+                  <span className="absolute -top-1 -right-1 w-2 h-2 bg-gray-400 rounded-full animate-pulse"></span>
                 )}
               </Link>
 
