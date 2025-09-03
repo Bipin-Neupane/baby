@@ -84,7 +84,7 @@ const faqCategories = [
       },
       {
         q: 'What payment methods do you accept?',
-        a: 'We accept all major credit cards (Visa, Mastercard, American Express, Discover), PayPal, Apple Pay, Google Pay, and BabyBloom gift cards.'
+        a: 'We accept all major credit cards (Visa, Mastercard, American Express, Discover), PayPal, Apple Pay, Google Pay, and Dcube Store gift cards.'
       },
       {
         q: 'Is my payment information secure?',
@@ -109,7 +109,7 @@ const faqCategories = [
       },
       {
         q: 'Do you have a rewards program?',
-        a: 'Yes! Our BabyBloom Rewards program lets you earn points on every purchase. Points can be redeemed for discounts on future orders. Sign up for free in your account dashboard.'
+        a: 'Yes! Our Dcube Store Rewards program lets you earn points on every purchase. Points can be redeemed for discounts on future orders. Sign up for free in your account dashboard.'
       },
       {
         q: 'Do you offer a registry service?',
@@ -213,9 +213,6 @@ export default function FAQPage() {
         <div className="flex justify-center gap-4">
           <a href="/contact" className="btn-primary">
             Contact Us
-          </a>
-          <a href="tel:1-800-BABY-BLOOM" className="btn-secondary">
-            Call Us
           </a>
         </div>
       </div>

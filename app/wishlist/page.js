@@ -90,7 +90,7 @@ export default function WishlistPage() {
               
               <div className="flex items-center justify-between">
                 <span className="text-lg font-bold text-gray-900">
-                  ${(product.sale_price || product.price).toFixed(2)}
+                  ${product.price.toFixed(2)}
                 </span>
                 <button
                   onClick={() => handleAddToCart(product)}

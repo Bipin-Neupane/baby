@@ -39,7 +39,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-8 pt-8 border-t border-gray-800 text-center text-sm text-gray-400">
-          © 2025 BabyBloom. All rights reserved.
+          © 2025 Dcube Store. All rights reserved.
         </div>
       </div>
     </footer>

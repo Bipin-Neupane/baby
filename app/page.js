@@ -49,7 +49,7 @@ export default async function HomePage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="relative z-10">
               <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6 animate-fade-in">
-                Welcome to <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-600">BabyBloom</span>
+                Welcome to <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-600">Dcube Store</span>
               </h1>
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
                 Discover our carefully curated collection of premium baby products. 
@@ -65,11 +65,11 @@ export default async function HomePage() {
               </div>
               <div className="mt-12 grid grid-cols-3 gap-6">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-purple-600">10K+</div>
+                  <div className="text-3xl font-bold text-purple-600">1K+</div>
                   <div className="text-sm text-gray-600">Happy Parents</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-pink-600">500+</div>
+                  <div className="text-3xl font-bold text-pink-600">10+</div>
                   <div className="text-sm text-gray-600">Products</div>
                 </div>
                 <div className="text-center">

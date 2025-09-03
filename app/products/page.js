@@ -13,10 +13,6 @@ async function getProducts(searchParams) {
     query = query.eq('category', searchParams.category)
   }
 
-  // Apply sale filter if provided
-  if (searchParams?.sale === 'true') {
-    query = query.not('sale_price', 'is', null)
-  }
 
   // Apply sorting
   if (searchParams?.sort) {
@@ -79,9 +75,7 @@ export default async function ProductsPage({ searchParams }) {
             : categories.find(c => c.slug === currentCategory)?.name || 'Products'}
         </h1>
         <p className="text-gray-600">
-          {searchParams?.sale === 'true'
-            ? 'Special offers and discounted items'
-            : `Showing ${products.length} products${currentCategory !== 'all' ? ' in ' + currentCategory : ''}`}
+          Showing {products.length} products{currentCategory !== 'all' ? ' in ' + currentCategory : ''}
         </p>
       </div>
       

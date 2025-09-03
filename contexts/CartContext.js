@@ -10,7 +10,7 @@ if (process.env.NODE_ENV === 'development') {
 
 const CartContext = createContext()
 
-const CART_STORAGE_KEY = 'babybloom_cart'
+const CART_STORAGE_KEY = 'dcubestore_cart'
 
 // Helper function to safely access localStorage
 const getStoredCart = () => {
@@ -90,7 +90,6 @@ export function CartProvider({ children }) {
           id: product.id,
           name: product.name,
           price: product.price,
-          sale_price: product.sale_price,
           images: product.images,
           brand: product.brand,
           category: product.category
@@ -130,7 +129,7 @@ export function CartProvider({ children }) {
   const itemCount = items.reduce((sum, item) => sum + item.quantity, 0)
   
   const totalPrice = items.reduce(
-    (sum, item) => sum + (item.product.sale_price || item.product.price) * item.quantity,
+    (sum, item) => sum + item.product.price * item.quantity,
     0
   )
 
@@ -142,7 +141,7 @@ export function CartProvider({ children }) {
       items: items.map(item => ({ 
         name: item.product.name, 
         quantity: item.quantity,
-        price: item.product.sale_price || item.product.price
+        price: item.product.price
       }))
     })
   }, [items, itemCount, totalPrice])

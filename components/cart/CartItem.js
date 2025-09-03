@@ -50,11 +50,11 @@ export default function CartItem({ item }) {
       
       <div className="text-right">
         <p className="font-semibold text-lg">
-          ${((item.product.sale_price || item.product.price) * item.quantity).toFixed(2)}
+          ${(item.product.price * item.quantity).toFixed(2)}
         </p>
         {item.quantity > 1 && (
           <p className="text-sm text-gray-600">
-            ${(item.product.sale_price || item.product.price).toFixed(2)} each
+            ${item.product.price.toFixed(2)} each
           </p>
         )}
       </div>

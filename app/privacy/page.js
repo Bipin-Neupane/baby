@@ -3,10 +3,10 @@ export default function PrivacyPage() {
     <div className="container mx-auto px-4 py-8 max-w-4xl">
       <h1 className="text-3xl font-bold text-gray-900 mb-8">Privacy Policy</h1>
       <div className="prose prose-gray max-w-none text-gray-700 leading-relaxed">
-        <p className="mb-6 text-sm text-gray-600">Last updated: January 2025</p>
+        <p className="mb-6 text-sm text-gray-600">Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long' })}</p>
         
         <p className="mb-6">
-          At BabyBloom, we are committed to protecting your privacy and ensuring the security of your 
+          At Dcube Store, we are committed to protecting your privacy and ensuring the security of your 
           personal information. This Privacy Policy explains how we collect, use, disclose, and 
           safeguard your information when you visit our website or make a purchase from us.
         </p>
@@ -233,14 +233,10 @@ export default function PrivacyPage() {
         </p>
         
         <div className="bg-gray-50 p-6 rounded-lg mb-6">
-          <h4 className="font-semibold mb-3 text-gray-900">BabyBloom Privacy Team</h4>
+          <h4 className="font-semibold mb-3 text-gray-900">Dcube Store Privacy Team</h4>
           <div className="space-y-2">
-            <p><strong>Email:</strong> privacy@babybloom.com</p>
-            <p><strong>Phone:</strong> 1-800-BABY-BLOOM</p>
-            <p><strong>Mail:</strong> BabyBloom Privacy Team<br />
-            123 Baby Street<br />
-            Parentville, ST 12345</p>
-            <p><strong>Response Time:</strong> We respond to privacy requests within 30 days</p>
+            <p><strong>Email:</strong> contact@dcube.store</p>
+            <p><strong>Phone:</strong> +1 (555) 123-4567</p>
           </div>
         </div>
         

@@ -3,10 +3,10 @@ export default function TermsPage() {
     <div className="container mx-auto px-4 py-8 max-w-4xl">
       <h1 className="text-3xl font-bold text-gray-900 mb-8">Terms of Service</h1>
       <div className="prose prose-gray max-w-none text-gray-700 leading-relaxed">
-        <p className="mb-6 text-sm text-gray-600">Last updated: January 2025</p>
+        <p className="mb-6 text-sm text-gray-600">Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long' })}</p>
         
         <p className="mb-6">
-          Welcome to BabyBloom! These Terms of Service ("Terms") govern your use of our website 
+          Welcome to Dcube Store! These Terms of Service ("Terms") govern your use of our website 
           and services. By accessing or using BabyBloom, you agree to be bound by these Terms.
         </p>
         
@@ -158,10 +158,9 @@ export default function TermsPage() {
           If you have any questions about these Terms of Service, please contact us:
         </p>
         <div className="bg-gray-50 p-4 rounded-lg mb-4">
-          <p className="mb-2"><strong>BabyBloom Customer Service</strong></p>
-          <p className="mb-1">Email: legal@babybloom.com</p>
-          <p className="mb-1">Phone: 1-800-BABY-BLOOM</p>
-          <p>Business Hours: Monday-Friday, 9 AM - 6 PM EST</p>
+          <p className="mb-2"><strong>Dcube Store Customer Service</strong></p>
+          <p className="mb-1">Email: contact@dcube.store</p>
+          <p className="mb-1">Phone: +1 (555) 123-4567</p>
         </div>
         
         <p className="text-sm text-gray-600 mt-8">

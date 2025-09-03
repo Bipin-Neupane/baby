@@ -4,14 +4,14 @@
 export const wishlistDebug = {
   // Check current wishlist state
   getWishlist: () => {
-    const wishlist = localStorage.getItem('babybloom_wishlist')
+    const wishlist = localStorage.getItem('dcubestore_wishlist')
     console.log('Current wishlist in localStorage:', wishlist ? JSON.parse(wishlist) : 'empty')
     return wishlist ? JSON.parse(wishlist) : []
   },
 
   // Clear wishlist completely
   clearWishlist: () => {
-    localStorage.removeItem('babybloom_wishlist')
+    localStorage.removeItem('dcubestore_wishlist')
     console.log('Wishlist cleared from localStorage')
     console.log('Refresh the page to see changes')
   },
@@ -22,7 +22,6 @@ export const wishlistDebug = {
       id: 'test-wishlist-' + Date.now(),
       name: 'Test Wishlist Product',
       price: 29.99,
-      sale_price: 24.99,
       images: ['https://images.unsplash.com/photo-1519689680058-324335c77eba?w=400'],
       brand: 'Test Brand',
       category: 'toys',
@@ -31,7 +30,7 @@ export const wishlistDebug = {
 
     const currentWishlist = wishlistDebug.getWishlist()
     const newWishlist = [...currentWishlist, testItem]
-    localStorage.setItem('babybloom_wishlist', JSON.stringify(newWishlist))
+    localStorage.setItem('dcubestore_wishlist', JSON.stringify(newWishlist))
     console.log('Test item added to wishlist')
     console.log('Refresh the page to see changes')
   },
@@ -88,7 +87,7 @@ export const wishlistDebug = {
   // Compare wishlist with cart items
   compareWithCart: () => {
     const wishlist = wishlistDebug.getWishlist()
-    const cart = localStorage.getItem('babybloom_cart')
+    const cart = localStorage.getItem('dcubestore_cart')
     const cartItems = cart ? JSON.parse(cart) : []
 
     const wishlistIds = new Set(wishlist.map(item => item.id))
@@ -120,7 +119,7 @@ export const wishlistDebug = {
     }
 
     const totalValue = wishlist.reduce((sum, item) => {
-      return sum + (item.sale_price || item.price)
+      return sum + item.price
     }, 0)
 
     const categories = wishlist.reduce((acc, item) => {

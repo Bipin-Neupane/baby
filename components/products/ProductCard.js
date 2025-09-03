@@ -40,10 +40,6 @@ export default function ProductCard({ product }) {
     }
   }
 
-  const discountPercentage = product.sale_price
-    ? Math.round((1 - product.sale_price / product.price) * 100)
-    : 0
-
   // Get the primary product image
   const getProductImage = () => {
     if (product.images && product.images.length > 0) {
@@ -61,11 +57,6 @@ export default function ProductCard({ product }) {
     <Link href={`/products/${product.id}`}>
       <div className="card group cursor-pointer h-full flex flex-col">
         <div className="relative aspect-square overflow-hidden bg-gray-100 rounded-t-xl">
-          {product.sale_price && (
-            <div className="absolute top-2 left-2 z-10 bg-red-500 text-white px-2 py-1 rounded-md text-sm font-semibold">
-              -{discountPercentage}%
-            </div>
-          )}
           
           <button
             className="absolute top-2 right-2 z-10 p-2 bg-white rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity hover:bg-gray-50"
@@ -91,20 +82,9 @@ export default function ProductCard({ product }) {
           
           <div className="mt-auto">
             <div className="flex items-center gap-2 mb-3">
-              {product.sale_price ? (
-                <>
-                  <span className="text-lg font-bold text-gray-900">
-                    ${product.sale_price.toFixed(2)}
-                  </span>
-                  <span className="text-sm text-gray-400 line-through">
-                    ${product.price.toFixed(2)}
-                  </span>
-                </>
-              ) : (
-                <span className="text-lg font-bold text-gray-900">
-                  ${product.price.toFixed(2)}
-                </span>
-              )}
+              <span className="text-lg font-bold text-gray-900">
+                ${product.price.toFixed(2)}
+              </span>
             </div>
             
             <button

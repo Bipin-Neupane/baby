@@ -10,7 +10,7 @@ if (process.env.NODE_ENV === 'development') {
 
 const WishlistContext = createContext()
 
-const WISHLIST_STORAGE_KEY = 'babybloom_wishlist'
+const WISHLIST_STORAGE_KEY = 'dcubestore_wishlist'
 
 // Helper function to safely access localStorage
 const getStoredWishlist = () => {
@@ -82,7 +82,6 @@ export function WishlistProvider({ children }) {
         id: product.id,
         name: product.name,
         price: product.price,
-        sale_price: product.sale_price,
         images: product.images,
         brand: product.brand,
         category: product.category,
@@ -122,7 +121,7 @@ export function WishlistProvider({ children }) {
         itemCount: wishlist.length,
         items: wishlist.map(item => ({ 
           name: item.name, 
-          price: item.sale_price || item.price
+          price: item.price
         }))
       })
     }

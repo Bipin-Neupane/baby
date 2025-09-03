@@ -76,26 +76,6 @@ export default function ProductFilters({ categories, currentCategory }) {
         </select>
       </div>
 
-      <div className="mb-6">
-        <h3 className="font-medium mb-3">Special Offers</h3>
-        <label className="flex items-center cursor-pointer">
-          <input
-            type="checkbox"
-            checked={searchParams.get('sale') === 'true'}
-            onChange={(e) => {
-              const params = new URLSearchParams(searchParams)
-              if (e.target.checked) {
-                params.set('sale', 'true')
-              } else {
-                params.delete('sale')
-              }
-              router.push(`/products?${params.toString()}`)
-            }}
-            className="mr-2 text-purple-600 focus:ring-purple-500 rounded"
-          />
-          <span>On Sale</span>
-        </label>
-      </div>
 
       <button
         onClick={() => router.push('/products')}

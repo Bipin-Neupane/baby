@@ -110,8 +110,8 @@ export default function ShippingPage() {
         <h3 className="text-xl font-semibold mt-6 mb-3">Contact Us</h3>
         <p className="text-gray-600">
           If you have any questions about shipping, please contact our customer service team at 
-          <a href="mailto:shipping@babybloom.com" className="text-purple-600"> shipping@babybloom.com</a> or 
-          call us at <span className="text-purple-600">1-800-BABY-BLOOM</span>.
+          <a href="mailto:shipping@babybloom.com" className="text-purple-600"> contact@dcube.store</a> or 
+          call us at <span className="text-purple-600">+1 (555) 123-4567</span>.
         </p>
       </div>
     </div>

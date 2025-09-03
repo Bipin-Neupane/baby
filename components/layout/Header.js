@@ -102,9 +102,6 @@ export default function Header() {
               <Link href="/products?category=feeding" className="text-gray-700 hover:text-purple-600 transition-colors">
                 Feeding
               </Link>
-              <Link href="/products?sale=true" className="text-red-500 font-semibold hover:text-red-600 transition-colors">
-                Sale
-              </Link>
             </nav>
 
             <div className="flex items-center space-x-4">
@@ -260,9 +257,6 @@ export default function Header() {
               </Link>
               <Link href="/products?category=feeding" className="block py-2 text-gray-700 hover:text-purple-600">
                 Feeding
-              </Link>
-              <Link href="/products?sale=true" className="block py-2 text-red-500 font-semibold">
-                Sale
               </Link>
               <hr className="my-2" />
               {user ? (

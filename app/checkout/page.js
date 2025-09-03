@@ -163,9 +163,9 @@ export default function CheckoutPage() {
         items: items.map(item => ({
           product_id: item.product.id,
           product_name: item.product.name,
-          price: item.product.sale_price || item.product.price,
+          price: item.product.price,
           quantity: item.quantity,
-          total: (item.product.sale_price || item.product.price) * item.quantity
+          total: item.product.price * item.quantity
         })),
         subtotal,
         shipping_cost: shipping,
@@ -542,7 +542,7 @@ export default function CheckoutPage() {
                       <p className="text-gray-600">Qty: {item.quantity}</p>
                     </div>
                     <div className="text-gray-900">
-                      ${((item.product.sale_price || item.product.price) * item.quantity).toFixed(2)}
+                      ${(item.product.price * item.quantity).toFixed(2)}
                     </div>
                   </div>
                 ))}

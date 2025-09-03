@@ -79,23 +79,9 @@ export default function ProductDetail({ product }) {
           </div>
 
           <div className="flex items-center gap-4">
-            {product.sale_price ? (
-              <>
-                <span className="text-3xl font-bold text-gray-900">
-                  ${product.sale_price.toFixed(2)}
-                </span>
-                <span className="text-xl text-gray-400 line-through">
-                  ${product.price.toFixed(2)}
-                </span>
-                <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                  Save {Math.round((1 - product.sale_price / product.price) * 100)}%
-                </span>
-              </>
-            ) : (
-              <span className="text-3xl font-bold text-gray-900">
-                ${product.price.toFixed(2)}
-              </span>
-            )}
+            <span className="text-3xl font-bold text-gray-900">
+              ${product.price.toFixed(2)}
+            </span>
           </div>
 
           <div className="flex items-center gap-2">

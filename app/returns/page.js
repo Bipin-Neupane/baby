@@ -8,7 +8,7 @@ export default function ReturnsPage() {
       <div className="bg-green-50 border-l-4 border-green-500 p-6 mb-8">
         <h2 className="text-xl font-semibold text-green-900 mb-2">30-Day Satisfaction Guarantee</h2>
         <p className="text-green-800">
-          We want you to love your BabyBloom products! If you're not completely satisfied, 
+          We want you to love your Dcube Store products! If you're not completely satisfied, 
           you can return most items within 30 days for a full refund or exchange.
         </p>
       </div>
@@ -93,7 +93,7 @@ export default function ReturnsPage() {
         <h3 className="text-xl font-semibold mt-6 mb-3">Damaged or Defective Items</h3>
         <p className="text-gray-600 mb-4">
           If you receive a damaged or defective item, please contact us immediately at 
-          <a href="mailto:quality@babybloom.com" className="text-purple-600"> quality@babybloom.com</a> with 
+          <a href="mailto:quality@dcubestore.com" className="text-purple-600"> quality@dcubestore.com</a> with 
           photos of the issue. We'll arrange for a replacement to be sent right away at no 
           additional cost to you.
         </p>
@@ -109,7 +109,7 @@ export default function ReturnsPage() {
         <h3 className="text-xl font-semibold mt-6 mb-3">Questions?</h3>
         <p className="text-gray-600">
           If you have any questions about returns or exchanges, our customer service team is 
-          here to help! Contact us at <a href="mailto:returns@babybloom.com" className="text-purple-600">returns@babybloom.com</a> or 
+          here to help! Contact us at <a href="mailto:returns@dcubestore.com" className="text-purple-600">returns@dcubestore.com</a> or 
           call <span className="text-purple-600">1-800-BABY-BLOOM</span>.
         </p>
       </div>

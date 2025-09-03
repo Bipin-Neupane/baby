@@ -1,4 +1,4 @@
--- BabyBloom E-Commerce Database Schema
+-- Dcube Store E-Commerce Database Schema
 -- Run this in Supabase SQL Editor
 
 -- Create products table
@@ -8,21 +8,12 @@ CREATE TABLE products (
     slug VARCHAR(255) UNIQUE NOT NULL,
     description TEXT,
     price DECIMAL(10, 2) NOT NULL,
-    sale_price DECIMAL(10, 2),
-    sku VARCHAR(100) UNIQUE,
     category VARCHAR(100),
-    subcategory VARCHAR(100),
     brand VARCHAR(100),
     images JSONB DEFAULT '[]',
-    features JSONB DEFAULT '[]',
-    specifications JSONB DEFAULT '{}',
     stock_quantity INTEGER DEFAULT 0,
     is_featured BOOLEAN DEFAULT false,
     is_active BOOLEAN DEFAULT true,
-    weight DECIMAL(10, 2),
-    dimensions JSONB,
-    age_range VARCHAR(50),
-    safety_standards TEXT[],
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
@@ -99,6 +90,6 @@ INSERT INTO categories (name, slug, display_order) VALUES
 
 -- Insert sample products
 INSERT INTO products (name, slug, description, price, category, brand, stock_quantity, is_featured, is_active, images) VALUES
-    ('Organic Cotton Onesie Set', 'organic-cotton-onesie-set', 'Soft and comfortable organic cotton onesies perfect for newborns', 29.99, 'clothing', 'BabyBloom', 50, true, true, '["https://images.unsplash.com/photo-1522771930-78848d9293e8"]'),
-    ('Wooden Rattle Toy', 'wooden-rattle-toy', 'Handcrafted wooden rattle toy, safe and eco-friendly', 15.99, 'toys', 'EcoBaby', 30, true, true, '["https://images.unsplash.com/photo-1596461404969-9ae70f2830c1"]'),
-    ('Baby Crib Mobile', 'baby-crib-mobile', 'Musical crib mobile with soft hanging toys', 39.99, 'nursery', 'DreamyNights', 20, true, true, '["https://images.unsplash.com/photo-1519689680058-324335c77eba"]');
+    ('Organic Cotton Onesie Set', 'organic-cotton-onesie-set', 'Soft and comfortable organic cotton onesies perfect for newborns', 29.99, 'clothing', 'Dcube Store', 50, true, true, '["https://images.unsplash.com/photo-1522771930-78848d9293e8?w=400"]'),
+    ('Wooden Rattle Toy', 'wooden-rattle-toy', 'Handcrafted wooden rattle toy, safe and eco-friendly', 15.99, 'toys', 'EcoBaby', 30, true, true, '["https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=400"]'),
+    ('Baby Crib Mobile', 'baby-crib-mobile', 'Musical crib mobile with soft hanging toys', 39.99, 'nursery', 'DreamyNights', 20, true, true, '["https://images.unsplash.com/photo-1519689680058-324335c77eba?w=400"]');

@@ -4,14 +4,14 @@
 export const cartDebug = {
   // Check current cart state
   getCart: () => {
-    const cart = localStorage.getItem('babybloom_cart')
+    const cart = localStorage.getItem('dcubestore_cart')
     console.log('Current cart in localStorage:', cart ? JSON.parse(cart) : 'empty')
     return cart ? JSON.parse(cart) : []
   },
 
   // Clear cart completely
   clearCart: () => {
-    localStorage.removeItem('babybloom_cart')
+    localStorage.removeItem('dcubestore_cart')
     console.log('Cart cleared from localStorage')
     console.log('Refresh the page to see changes')
   },
@@ -33,7 +33,7 @@ export const cartDebug = {
 
     const currentCart = cartDebug.getCart()
     const newCart = [...currentCart, testItem]
-    localStorage.setItem('babybloom_cart', JSON.stringify(newCart))
+    localStorage.setItem('dcubestore_cart', JSON.stringify(newCart))
     console.log('Test item added to cart')
     console.log('Refresh the page to see changes')
   },
