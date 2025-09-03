@@ -29,10 +29,19 @@ export default function NewsletterSection() {
       const data = await response.json()
 
       if (response.ok) {
-        toast.success(data.message || 'Successfully subscribed!')
+        toast.success(data.message || '🎉 Successfully subscribed to our newsletter!', {
+          duration: 5000,
+          style: {
+            background: '#10B981',
+            color: '#fff',
+            fontSize: '16px',
+            fontWeight: '500',
+          },
+          icon: '✅',
+        })
         setEmail('') // Clear the input
         
-        // Optional: Track conversion
+        // Optional: Track conversion for analytics
         if (typeof window !== 'undefined' && window.gtag) {
           window.gtag('event', 'newsletter_signup', {
             event_category: 'engagement',
@@ -40,11 +49,23 @@ export default function NewsletterSection() {
           })
         }
       } else {
-        toast.error(data.error || 'Subscription failed')
+        toast.error(data.error || 'Subscription failed', {
+          duration: 4000,
+          style: {
+            background: '#EF4444',
+            color: '#fff',
+          },
+        })
       }
     } catch (error) {
       console.error('Newsletter error:', error)
-      toast.error('Something went wrong. Please try again.')
+      toast.error('Something went wrong. Please try again.', {
+        duration: 4000,
+        style: {
+          background: '#EF4444',
+          color: '#fff',
+        },
+      })
     } finally {
       setLoading(false)
     }

@@ -33,6 +33,7 @@ BEGIN
     END IF;
 END $$;
 
+
 -- Update images to include proper width parameters for better loading
 UPDATE products 
 SET images = (

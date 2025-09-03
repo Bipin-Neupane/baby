@@ -116,9 +116,9 @@ export default function AdminDashboard() {
             <p className="text-gray-600">Process and manage customer orders</p>
           </Link>
           
-          <Link href="/admin/products/new" className="card p-6 hover:shadow-lg transition-shadow">
-            <h2 className="text-xl font-semibold text-gray-900 mb-2">Add New Product</h2>
-            <p className="text-gray-600">List a new product in your store</p>
+          <Link href="/admin/newsletter" className="card p-6 hover:shadow-lg transition-shadow">
+            <h2 className="text-xl font-semibold text-gray-900 mb-2">Newsletter Subscribers</h2>
+            <p className="text-gray-600">View and manage email subscribers</p>
           </Link>
         </div>
       </div>

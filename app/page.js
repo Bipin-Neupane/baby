@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import ProductGrid from '@/components/products/ProductGrid'
+import NewsletterSection from '@/components/NewsletterSection'
 import { supabase } from '@/lib/supabase'
 import { ShoppingBag, Truck, Shield, Heart } from 'lucide-react'
 
@@ -186,28 +187,7 @@ export default async function HomePage() {
       </section>
 
       {/* Newsletter Section */}
-      <section className="py-20 bg-gradient-to-r from-purple-600 to-pink-600">
-        <div className="container mx-auto px-4">
-          <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-4xl font-bold text-white mb-4">
-              Stay Updated
-            </h2>
-            <p className="text-xl text-purple-100 mb-8">
-              Get exclusive offers and be the first to know about new arrivals
-            </p>
-            <form className="flex gap-4 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-6 py-3 rounded-lg text-gray-900 focus:ring-4 focus:ring-white/30 outline-none"
-              />
-              <button type="submit" className="bg-white text-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-                Subscribe
-              </button>
-            </form>
-          </div>
-        </div>
-      </section>
+      <NewsletterSection />
     </div>
   )
 }

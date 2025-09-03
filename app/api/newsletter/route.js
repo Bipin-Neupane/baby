@@ -3,7 +3,9 @@ import { supabase } from '@/lib/supabase'
 
 export async function POST(request) {
   try {
+    console.log('Newsletter API called')
     const { email } = await request.json()
+    console.log('Email received:', email)
 
     if (!email || !email.includes('@')) {
       return NextResponse.json(
@@ -13,13 +15,17 @@ export async function POST(request) {
     }
 
     // Check if email already exists
-    const { data: existing } = await supabase
+    console.log('Checking if email exists...')
+    const { data: existing, error: checkError } = await supabase
       .from('newsletter_subscribers')
       .select('email')
       .eq('email', email)
       .single()
 
+    console.log('Existing check result:', { existing, checkError })
+
     if (existing) {
+      console.log('Email already exists')
       return NextResponse.json(
         { message: 'You are already subscribed!' },
         { status: 200 }
@@ -27,23 +33,28 @@ export async function POST(request) {
     }
 
     // Add new subscriber
+    console.log('Adding new subscriber...')
     const { data, error } = await supabase
       .from('newsletter_subscribers')
       .insert([
         { 
           email,
           subscribed_at: new Date().toISOString(),
-          is_active: true
+          is_active: true,
+          source: 'website'
         }
       ])
       .select()
       .single()
 
-    if (error) throw error
+    console.log('Insert result:', { data, error })
 
-    // Here you could also send a welcome email using a service like SendGrid, Resend, etc.
-    // await sendWelcomeEmail(email)
+    if (error) {
+      console.error('Insert error:', error)
+      throw error
+    }
 
+    console.log('Successfully subscribed:', email)
     return NextResponse.json(
       { 
         success: true,
@@ -55,7 +66,7 @@ export async function POST(request) {
   } catch (error) {
     console.error('Newsletter subscription error:', error)
     return NextResponse.json(
-      { error: 'Failed to subscribe. Please try again.' },
+      { error: `Failed to subscribe: ${error.message}` },
       { status: 500 }
     )
   }

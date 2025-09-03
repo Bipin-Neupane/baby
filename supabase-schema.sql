@@ -66,11 +66,24 @@ CREATE TABLE admins (
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
+-- Create newsletter subscribers table
+CREATE TABLE newsletter_subscribers (
+    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    is_active BOOLEAN DEFAULT true,
+    subscribed_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    unsubscribed_at TIMESTAMP WITH TIME ZONE,
+    source VARCHAR(50) DEFAULT 'website',
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+
 -- Enable Row Level Security
 ALTER TABLE products ENABLE ROW LEVEL SECURITY;
 ALTER TABLE orders ENABLE ROW LEVEL SECURITY;
 ALTER TABLE categories ENABLE ROW LEVEL SECURITY;
 ALTER TABLE admins ENABLE ROW LEVEL SECURITY;
+ALTER TABLE newsletter_subscribers ENABLE ROW LEVEL SECURITY;
 
 -- Create policies
 CREATE POLICY "Products are viewable by everyone" ON products
@@ -78,6 +91,14 @@ CREATE POLICY "Products are viewable by everyone" ON products
 
 CREATE POLICY "Orders are viewable by customer" ON orders
     FOR SELECT USING (customer_email = auth.email());
+
+-- Newsletter subscribers policies (allow public insert for subscriptions)
+CREATE POLICY "Allow public newsletter subscriptions" ON newsletter_subscribers
+    FOR INSERT WITH CHECK (true);
+
+CREATE POLICY "Allow service role to read newsletter_subscribers" ON newsletter_subscribers
+    FOR SELECT USING (auth.role() = 'service_role');
+
 
 -- Insert sample categories
 INSERT INTO categories (name, slug, display_order) VALUES

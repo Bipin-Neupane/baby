@@ -109,8 +109,8 @@ export default function ReturnsPage() {
         <h3 className="text-xl font-semibold mt-6 mb-3">Questions?</h3>
         <p className="text-gray-600">
           If you have any questions about returns or exchanges, our customer service team is 
-          here to help! Contact us at <a href="mailto:returns@dcubestore.com" className="text-purple-600">returns@dcubestore.com</a> or 
-          call <span className="text-purple-600">1-800-BABY-BLOOM</span>.
+          here to help! Contact us at <a href="mailto:returns@dcubestore.com" className="text-purple-600">contact@dcubestore.com</a> or 
+          call <span className="text-purple-600">+1 (555) 123-4567</span>.
         </p>
       </div>
     </div>

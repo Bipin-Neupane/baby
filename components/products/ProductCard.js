@@ -34,8 +34,10 @@ export default function ProductCard({ product }) {
         removeFromWishlist(product.id)
       } else {
         addToWishlist(product)
+        // Don't show toast here - let WishlistContext handle it
       }
     } else {
+      // Only show fallback toast when wishlist context is not available
       toast.success('Added to wishlist!')
     }
   }
