@@ -82,7 +82,7 @@ export default function NewsletterSection() {
             Get exclusive offers and be the first to know about new arrivals
           </p>
           <p className="text-sm text-purple-200 mb-8">
-            Join 10,000+ parents and get 15% off your first order!
+            Join 1k+ parents and get 15% off your first order!
           </p>
           <form onSubmit={handleSubmit} className="flex gap-4 max-w-md mx-auto">
             <input
