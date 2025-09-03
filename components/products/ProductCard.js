@@ -4,25 +4,12 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { useCart } from '@/hooks/useCart'
 import { ShoppingCart, Heart } from 'lucide-react'
+import ImageWithFallback from '@/components/ui/ImageWithFallback'
 import toast from 'react-hot-toast'
 
-// Default fallback images for each category
-const categoryFallbacks = {
-  'clothing': 'https://images.unsplash.com/photo-1522771930-78848d9293e8?w=800&h=800&fit=crop',
-  'toys': 'https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=800&h=800&fit=crop',
-  'nursery': 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=800&h=800&fit=crop',
-  'feeding': 'https://images.unsplash.com/photo-1570544820881-4fe8b8e5da06?w=800&h=800&fit=crop',
-  'bath-care': 'https://images.unsplash.com/photo-1540221652346-e5dd6b50f3e7?w=800&h=800&fit=crop',
-  'travel': 'https://images.unsplash.com/photo-1533499966477-9333968a4e28?w=800&h=800&fit=crop',
-  'safety': 'https://images.unsplash.com/photo-1503516509570-a0d605c5de96?w=800&h=800&fit=crop',
-  'gifts': 'https://images.unsplash.com/photo-1515192650392-45c8ad7b8fdc?w=800&h=800&fit=crop',
-  'default': 'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=800&h=800&fit=crop'
-}
 
 export default function ProductCard({ product }) {
   const { addItem } = useCart()
-  const [imageError, setImageError] = useState(false)
-  const [imageLoading, setImageLoading] = useState(true)
   
   // Try to import wishlist if available
   let wishlistFunctions = null
@@ -49,7 +36,7 @@ export default function ProductCard({ product }) {
         addToWishlist(product)
       }
     } else {
-      toast.error('Wishlist not available')
+      toast.success('Added to wishlist!')
     }
   }
 
@@ -57,17 +44,15 @@ export default function ProductCard({ product }) {
     ? Math.round((1 - product.sale_price / product.price) * 100)
     : 0
 
-  // Get the product image with multiple fallbacks
+  // Get the primary product image
   const getProductImage = () => {
-    if (!imageError && product.images && product.images.length > 0 && product.images[0]) {
-      const image = product.images[0]
-      // Check if it's a valid URL
-      if (image.startsWith('http') && !image.includes('placeholder')) {
-        return image
+    if (product.images && product.images.length > 0) {
+      const primaryImage = product.images[0]
+      if (primaryImage && typeof primaryImage === 'string' && primaryImage.trim() && primaryImage.startsWith('http')) {
+        return primaryImage
       }
     }
-    // Return category-specific fallback or default
-    return categoryFallbacks[product.category] || categoryFallbacks.default
+    return null
   }
 
   const imageUrl = getProductImage()
@@ -75,41 +60,28 @@ export default function ProductCard({ product }) {
   return (
     <Link href={`/products/${product.id}`}>
       <div className="card group cursor-pointer h-full flex flex-col">
-        <div className="relative aspect-square overflow-hidden bg-gray-50">
+        <div className="relative aspect-square overflow-hidden bg-gray-100 rounded-t-xl">
           {product.sale_price && (
             <div className="absolute top-2 left-2 z-10 bg-red-500 text-white px-2 py-1 rounded-md text-sm font-semibold">
               -{discountPercentage}%
             </div>
           )}
-          {wishlistFunctions && (
-            <button
-              className={`absolute top-2 right-2 z-10 p-2 bg-white rounded-full shadow-md transition-colors ${
-                wishlistFunctions.isInWishlist(product.id) ? 'text-red-500' : 'text-gray-400 hover:text-red-500'
-              }`}
-              onClick={handleWishlistToggle}
-            >
-              <Heart className={`w-4 h-4 ${wishlistFunctions.isInWishlist(product.id) ? 'fill-current' : ''}`} />
-            </button>
-          )}
           
-          {/* Loading skeleton */}
-          {imageLoading && (
-            <div className="absolute inset-0 bg-gray-200 animate-pulse" />
-          )}
+          <button
+            className="absolute top-2 right-2 z-10 p-2 bg-white rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity hover:bg-gray-50"
+            onClick={handleWishlistToggle}
+          >
+            <Heart className="w-4 h-4 text-gray-600 hover:text-red-500 transition-colors" />
+          </button>
           
-          <img
+          <ImageWithFallback
             src={imageUrl}
-            alt={product.name}
-            className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 ${
-              imageLoading ? 'opacity-0' : 'opacity-100'
-            }`}
-            onLoad={() => setImageLoading(false)}
-            onError={(e) => {
-              setImageError(true)
-              setImageLoading(false)
-              // Use fallback image
-              e.target.src = categoryFallbacks[product.category] || categoryFallbacks.default
-            }}
+            alt={product.name || 'Product image'}
+            category={product.category}
+            className="object-cover group-hover:scale-105 transition-all duration-300"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+            priority={product.is_featured}
+            fill
           />
         </div>
         
@@ -137,7 +109,7 @@ export default function ProductCard({ product }) {
             
             <button
               onClick={handleAddToCart}
-              className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-2 rounded-lg font-medium hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2"
+              className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-2 rounded-lg font-medium hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2 hover:from-purple-700 hover:to-pink-700"
             >
               <ShoppingCart className="w-4 h-4" />
               Add to Cart

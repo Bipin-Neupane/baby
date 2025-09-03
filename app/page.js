@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import ProductGrid from '@/components/products/ProductGrid'
 import { supabase } from '@/lib/supabase'
 import { ShoppingBag, Truck, Shield, Heart } from 'lucide-react'
@@ -79,11 +80,16 @@ export default async function HomePage() {
             </div>
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-pink-200 to-purple-200 rounded-full filter blur-3xl opacity-30 animate-pulse"></div>
-              <img
-                src="https://images.unsplash.com/photo-1519689680058-324335c77eba?w=600&h=600&fit=crop"
-                alt="Happy baby smiling"
-                className="relative z-10 rounded-2xl shadow-2xl w-full h-auto"
-              />
+              <div className="relative z-10 rounded-2xl shadow-2xl overflow-hidden aspect-square">
+                <Image
+                  src="https://images.unsplash.com/photo-1519689680058-324335c77eba?w=600&h=600&fit=crop&crop=center&auto=format"
+                  alt="Happy baby smiling"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  priority
+                />
+              </div>
             </div>
           </div>
         </div>

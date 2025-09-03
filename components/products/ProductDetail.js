@@ -2,7 +2,8 @@
 
 import { useState } from 'react'
 import { useCart } from '@/hooks/useCart'
-import { ShoppingCart, Heart, Shield, Truck, Star } from 'lucide-react'
+import { ShoppingCart, Heart, Shield, Truck, Star, Plus, Minus } from 'lucide-react'
+import ImageWithFallback from '@/components/ui/ImageWithFallback'
 import toast from 'react-hot-toast'
 
 export default function ProductDetail({ product }) {
@@ -15,32 +16,54 @@ export default function ProductDetail({ product }) {
     toast.success(`Added ${quantity} x ${product.name} to cart!`)
   }
 
+  // Get valid images
+  const getValidImages = () => {
+    if (product.images && Array.isArray(product.images)) {
+      const validImages = product.images.filter(img => 
+        img && typeof img === 'string' && img.trim() && img.startsWith('http')
+      )
+      return validImages.length > 0 ? validImages : [null]
+    }
+    return [null]
+  }
+
+  const validImages = getValidImages()
+  const currentImage = validImages[selectedImage] || validImages[0]
+
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="grid lg:grid-cols-2 gap-12">
         {/* Images */}
         <div className="space-y-4">
-          <div className="aspect-square overflow-hidden rounded-lg bg-gray-50">
-            <img
-              src={product.images[selectedImage] || '/api/placeholder/600/600'}
+          <div className="aspect-square overflow-hidden rounded-lg bg-gray-100 relative">
+            <ImageWithFallback
+              src={currentImage}
               alt={product.name}
-              className="w-full h-full object-cover"
+              category={product.category}
+              className="object-cover transition-opacity duration-300"
+              sizes="(max-width: 768px) 100vw, 50vw"
+              priority
+              fill
             />
           </div>
-          {product.images.length > 1 && (
+          
+          {validImages.length > 1 && validImages[0] && (
             <div className="grid grid-cols-4 gap-2">
-              {product.images.map((image, index) => (
+              {validImages.slice(0, 4).map((image, index) => (
                 <button
                   key={index}
                   onClick={() => setSelectedImage(index)}
-                  className={`aspect-square overflow-hidden rounded-lg border-2 ${
-                    selectedImage === index ? 'border-purple-600' : 'border-gray-200'
+                  className={`aspect-square overflow-hidden rounded-lg border-2 transition-colors relative ${
+                    selectedImage === index ? 'border-purple-600' : 'border-gray-200 hover:border-gray-300'
                   }`}
                 >
-                  <img
+                  <ImageWithFallback
                     src={image}
                     alt={`${product.name} ${index + 1}`}
-                    className="w-full h-full object-cover"
+                    category={product.category}
+                    className="object-cover"
+                    sizes="150px"
+                    fill
                   />
                 </button>
               ))}
@@ -64,7 +87,7 @@ export default function ProductDetail({ product }) {
                 <span className="text-xl text-gray-400 line-through">
                   ${product.price.toFixed(2)}
                 </span>
-                <span className="bg-red-500 text-white px-2 py-1 rounded-md text-sm font-semibold">
+                <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
                   Save {Math.round((1 - product.sale_price / product.price) * 100)}%
                 </span>
               </>
@@ -98,22 +121,22 @@ export default function ProductDetail({ product }) {
               <div className="flex items-center border border-gray-300 rounded-lg">
                 <button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="px-4 py-2 hover:bg-gray-100"
+                  className="p-2 hover:bg-gray-100 transition-colors"
                 >
-                  -
+                  <Minus className="w-4 h-4" />
                 </button>
                 <input
                   type="number"
                   id="quantity"
                   value={quantity}
                   onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
-                  className="w-16 text-center border-x border-gray-300"
+                  className="w-16 text-center py-2 border-x border-gray-300"
                 />
                 <button
                   onClick={() => setQuantity(quantity + 1)}
-                  className="px-4 py-2 hover:bg-gray-100"
+                  className="p-2 hover:bg-gray-100 transition-colors"
                 >
-                  +
+                  <Plus className="w-4 h-4" />
                 </button>
               </div>
             </div>
@@ -126,7 +149,7 @@ export default function ProductDetail({ product }) {
                 <ShoppingCart className="w-5 h-5" />
                 Add to Cart
               </button>
-              <button className="p-3 border-2 border-gray-300 rounded-lg hover:border-gray-400">
+              <button className="p-3 border-2 border-gray-300 rounded-lg hover:border-gray-400 transition-colors">
                 <Heart className="w-5 h-5 text-gray-600" />
               </button>
             </div>
@@ -148,14 +171,14 @@ export default function ProductDetail({ product }) {
             </div>
           </div>
 
-          {/* Product Info */}
-          {product.features && product.features.length > 0 && (
+          {/* Product Features */}
+          {product.features && Array.isArray(product.features) && product.features.length > 0 && (
             <div>
               <h3 className="font-semibold text-lg mb-3">Features</h3>
               <ul className="space-y-2">
                 {product.features.map((feature, index) => (
-                  <li key={index} className="flex items-start">
-                    <span className="text-purple-600 mr-2">•</span>
+                  <li key={index} className="flex items-start gap-2">
+                    <span className="text-purple-600 font-bold">•</span>
                     <span className="text-gray-600">{feature}</span>
                   </li>
                 ))}

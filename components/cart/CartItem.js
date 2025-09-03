@@ -2,17 +2,23 @@
 
 import { useCart } from '@/hooks/useCart'
 import { Trash2 } from 'lucide-react'
+import ImageWithFallback from '@/components/ui/ImageWithFallback'
 
 export default function CartItem({ item }) {
   const { updateQuantity, removeItem } = useCart()
 
   return (
     <div className="flex items-center gap-4 p-4 bg-white rounded-lg shadow-sm mb-4">
-      <img
-        src={item.product.images[0] || '/api/placeholder/100/100'}
-        alt={item.product.name}
-        className="w-24 h-24 object-cover rounded-lg"
-      />
+      <div className="relative w-24 h-24 rounded-lg overflow-hidden">
+        <ImageWithFallback
+          src={item.product.images?.[0]}
+          alt={item.product.name}
+          category={item.product.category}
+          className="object-cover"
+          sizes="96px"
+          fill
+        />
+      </div>
       
       <div className="flex-1">
         <h3 className="font-semibold text-gray-900">{item.product.name}</h3>

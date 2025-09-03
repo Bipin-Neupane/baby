@@ -4,6 +4,7 @@ import { useWishlist } from '@/contexts/WishlistContext'
 import { useCart } from '@/hooks/useCart'
 import Link from 'next/link'
 import { Heart, ShoppingCart, Trash2 } from 'lucide-react'
+import ImageWithFallback from '@/components/ui/ImageWithFallback'
 import toast from 'react-hot-toast'
 
 export default function WishlistPage() {
@@ -69,10 +70,13 @@ export default function WishlistPage() {
               >
                 <Trash2 className="w-4 h-4 text-red-500" />
               </button>
-              <img
-                src={product.images?.[0] || '/api/placeholder/400/400'}
+              <ImageWithFallback
+                src={product.images?.[0]}
                 alt={product.name}
-                className="w-full h-full object-cover"
+                category={product.category}
+                className="object-cover"
+                sizes="(max-width: 768px) 50vw, 25vw"
+                fill
               />
             </div>
             
