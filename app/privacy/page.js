@@ -233,7 +233,8 @@ export default function PrivacyPage() {
         </p>
         
         <div className="bg-gray-50 p-6 rounded-lg mb-6">
-          <h4 className="font-semibold mb-3 text-gray-900">Dcube Store Privacy Team</h4>
+          <h4 className="font-semibold mb-3 text-gray-900">Dcube Store
+             Privacy Team</h4>
           <div className="space-y-2">
             <p><strong>Email:</strong> contact@dcube.store</p>
             <p><strong>Phone:</strong> +1 (555) 123-4567</p>
