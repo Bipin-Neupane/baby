@@ -13,7 +13,7 @@ export default function AboutPage() {
               <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
                 About{' '}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-600">
-                  BabyBloom
+                  Dcube Store
                 </span>
               </h1>
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
@@ -55,7 +55,7 @@ export default function AboutPage() {
           <div className="max-w-4xl mx-auto text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-6">Our Story</h2>
             <p className="text-lg text-gray-600 leading-relaxed">
-              BabyBloom was born from a simple belief: every child deserves the very best start in life.
+              Dcube Store was born from a simple belief: every child deserves the very best start in life.
             </p>
           </div>
           
@@ -63,14 +63,14 @@ export default function AboutPage() {
             <div>
               <h3 className="text-2xl font-semibold text-gray-900 mb-4">How It All Began</h3>
               <p className="text-gray-600 mb-4 leading-relaxed">
-                Founded in 2020 by parents Sarah and Michael Chen, BabyBloom started when they 
+                Founded in 2025, Dcube Store started when they 
                 couldn't find baby products that met their high standards for safety, quality, 
                 and design. As new parents, they spent countless hours researching products, 
                 reading safety reports, and testing items for their own daughter, Emma.
               </p>
               <p className="text-gray-600 mb-4 leading-relaxed">
                 What began as a quest to find the perfect products for Emma evolved into a 
-                mission to help other parents make informed choices. Today, BabyBloom serves 
+                mission to help other parents make informed choices. Today, Dcube Store serves 
                 thousands of families worldwide, each product carefully curated with the same 
                 love and attention we'd give our own children.
               </p>
@@ -146,11 +146,11 @@ export default function AboutPage() {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8 text-center text-white">
             <div>
-              <div className="text-4xl font-bold mb-2">50K+</div>
+              <div className="text-4xl font-bold mb-2">1K+</div>
               <div className="text-pink-100">Happy Families</div>
             </div>
             <div>
-              <div className="text-4xl font-bold mb-2">500+</div>
+              <div className="text-4xl font-bold mb-2">10+</div>
               <div className="text-pink-100">Premium Products</div>
             </div>
             <div>
@@ -158,7 +158,7 @@ export default function AboutPage() {
               <div className="text-pink-100">Satisfaction Rate</div>
             </div>
             <div>
-              <div className="text-4xl font-bold mb-2">4 Years</div>
+              <div className="text-4xl font-bold mb-2">1 Year</div>
               <div className="text-pink-100">Of Excellence</div>
             </div>
           </div>
@@ -169,7 +169,7 @@ export default function AboutPage() {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">Why Choose BabyBloom?</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">Why Choose Dcube Store?</h2>
             <p className="text-lg text-gray-600">
               We go above and beyond to ensure every shopping experience exceeds your expectations.
             </p>
@@ -206,71 +206,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">Meet Our Team</h2>
-            <p className="text-lg text-gray-600">
-              The passionate parents and experts behind BabyBloom's success.
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <div className="text-center bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-shadow">
-              <div className="relative w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden">
-                <Image
-                  src="https://images.unsplash.com/photo-1494790108755-2616c31fd9db?w=200&h=200&fit=crop&crop=face&auto=format"
-                  alt="Sarah Chen"
-                  fill
-                  className="object-cover"
-                  sizes="96px"
-                />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-1">Sarah Chen</h3>
-              <p className="text-pink-600 mb-2">Co-Founder & CEO</p>
-              <p className="text-sm text-gray-600">
-                Mom of two, former pediatric nurse, and passionate advocate for child safety and development.
-              </p>
-            </div>
-            
-            <div className="text-center bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-shadow">
-              <div className="relative w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden">
-                <Image
-                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face&auto=format"
-                  alt="Michael Chen"
-                  fill
-                  className="object-cover"
-                  sizes="96px"
-                />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-1">Michael Chen</h3>
-              <p className="text-purple-600 mb-2">Co-Founder & CTO</p>
-              <p className="text-sm text-gray-600">
-                Father, tech innovator, and safety engineering expert ensuring our platform meets the highest standards.
-              </p>
-            </div>
-            
-            <div className="text-center bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-shadow">
-              <div className="relative w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden">
-                <Image
-                  src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=face&auto=format"
-                  alt="Dr. Emily Rodriguez"
-                  fill
-                  className="object-cover"
-                  sizes="96px"
-                />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-1">Dr. Emily Rodriguez</h3>
-              <p className="text-blue-600 mb-2">Chief Product Officer</p>
-              <p className="text-sm text-gray-600">
-                Pediatrician and mother of three, leading our product curation with medical expertise and parental insight.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Contact CTA Section */}
       <section className="py-20 bg-gradient-to-br from-pink-50 to-purple-50">
         <div className="container mx-auto px-4 text-center">
@@ -292,21 +227,6 @@ export default function AboutPage() {
             >
               Shop Our Products
             </a>
-          </div>
-          
-          <div className="mt-12 grid md:grid-cols-3 gap-6 max-w-3xl mx-auto text-sm text-gray-600">
-            <div className="flex items-center justify-center gap-2">
-              <span>📧</span>
-              <span>hello@babybloom.com</span>
-            </div>
-            <div className="flex items-center justify-center gap-2">
-              <span>📞</span>
-              <span>1-800-BABY-BLOOM</span>
-            </div>
-            <div className="flex items-center justify-center gap-2">
-              <span>💬</span>
-              <span>Live Chat Available</span>
-            </div>
           </div>
         </div>
       </section>

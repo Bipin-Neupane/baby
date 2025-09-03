@@ -4,7 +4,7 @@ export default function Footer() {
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-4 gap-8">
           <div>
-            <h3 className="text-lg font-semibold mb-4">About BabyBloom</h3>
+            <h3 className="text-lg font-semibold mb-4">About Dcube Store</h3>
             <p className="text-gray-400 text-sm">
               Your trusted partner for premium baby products. Quality, safety, and comfort for your little ones.
             </p>

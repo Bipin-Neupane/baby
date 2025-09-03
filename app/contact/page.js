@@ -68,7 +68,6 @@ export default function ContactPage() {
                   <div>
                     <p className="font-medium">Phone</p>
                     <p className="text-gray-600">+1 (555) 123-4567</p>
-                    <p className="text-gray-600">Mon-Fri 9AM-6PM EST</p>
                   </div>
                 </div>
                 
@@ -76,8 +75,7 @@ export default function ContactPage() {
                   <Mail className="w-5 h-5 text-purple-600 mt-1 mr-3" />
                   <div>
                     <p className="font-medium">Email</p>
-                    <p className="text-gray-600">support@babybloom.com</p>
-                    <p className="text-gray-600">sales@babybloom.com</p>
+                    <p className="text-gray-600">contact@dcube.store</p>
                   </div>
                 </div>
                 
@@ -86,8 +84,8 @@ export default function ContactPage() {
                   <div>
                     <p className="font-medium">Address</p>
                     <p className="text-gray-600">
-                      123 Baby Street<br />
-                      New York, NY 10001<br />
+                      8029, 1021 E Lincolnway<br />
+                      Cheyenne, WY, Laramie,<br />
                       United States
                     </p>
                   </div>
@@ -98,8 +96,7 @@ export default function ContactPage() {
                   <div>
                     <p className="font-medium">Business Hours</p>
                     <p className="text-gray-600">Monday - Friday: 9AM - 6PM</p>
-                    <p className="text-gray-600">Saturday: 10AM - 4PM</p>
-                    <p className="text-gray-600">Sunday: Closed</p>
+                    <p className="text-gray-600">Saturday - Sunday: 10AM - 4PM</p>
                   </div>
                 </div>
               </div>
