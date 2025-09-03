@@ -10,7 +10,7 @@ import { Toaster } from 'react-hot-toast'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'BabyBloom - Premium Baby Products for Your Little One',
+  title: 'Dcube Store - Premium Baby Products for Your Little One',
   description: 'Shop the finest collection of baby products including clothing, toys, nursery essentials, and more.',
   keywords: 'baby products, baby clothes, baby toys, nursery, strollers, car seats, baby care',
 }
