@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Phone, Mail, MapPin, Clock, Send } from 'lucide-react'
+import { Phone, Mail, MapPin, Clock, Send, Facebook, Instagram, Twitter } from 'lucide-react'
 import toast from 'react-hot-toast'
 
 export default function ContactPage() {
@@ -104,9 +104,15 @@ export default function ContactPage() {
               <div className="mt-8">
                 <h3 className="font-semibold mb-3">Follow Us</h3>
                 <div className="flex space-x-4">
-                  <a href="#" className="text-purple-600 hover:text-purple-700">Facebook</a>
-                  <a href="#" className="text-purple-600 hover:text-purple-700">Instagram</a>
-                  <a href="#" className="text-purple-600 hover:text-purple-700">Twitter</a>
+                  <a href="#" className="text-purple-600 hover:text-purple-700 transition-colors">
+                    <Facebook className="w-5 h-5" />
+                  </a>
+                  <a href="#" className="text-purple-600 hover:text-purple-700 transition-colors">
+                    <Instagram className="w-5 h-5" />
+                  </a>
+                  <a href="#" className="text-purple-600 hover:text-purple-700 transition-colors">
+                    <Twitter className="w-5 h-5" />
+                  </a>
                 </div>
               </div>
             </div>
