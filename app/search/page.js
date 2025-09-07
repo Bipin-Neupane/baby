@@ -1,12 +1,12 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import ProductGrid from '@/components/products/ProductGrid'
 import { Search } from 'lucide-react'
 
-export default function SearchPage() {
+function SearchResults() {
   const searchParams = useSearchParams()
   const query = searchParams.get('q') || ''
   const [products, setProducts] = useState([])
@@ -72,5 +72,27 @@ export default function SearchPage() {
         </div>
       )}
     </div>
+  )
+}
+
+export default function SearchPage() {
+  return (
+    <Suspense fallback={
+      <div className="container mx-auto px-4 py-8">
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-4">
+            Search Results
+          </h1>
+        </div>
+        <div className="text-center py-12">
+          <div className="inline-flex items-center">
+            <Search className="w-6 h-6 mr-2 animate-pulse" />
+            <span>Loading search...</span>
+          </div>
+        </div>
+      </div>
+    }>
+      <SearchResults />
+    </Suspense>
   )
 }
