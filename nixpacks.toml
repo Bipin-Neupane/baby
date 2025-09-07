@@ -1,5 +1,5 @@
 [phases.setup]
-providers = ["nodejs_18", "npm-9_x", "openssl", "curl", "wget"]
+providers = ["nodejs_20", "npm-10_x", "openssl", "curl", "wget"]
 
 [phases.install]
 cmds = ["npm ci --legacy-peer-deps"]
