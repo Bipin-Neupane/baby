@@ -9,8 +9,8 @@ export default function CartSummary() {
   const { subtotal, shipping, tax, total } = calculateCartTotal(items)
 
   return (
-    <div className="bg-gray-50 rounded-lg p-6">
-      <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
+    <div className="bg-gray-50 rounded-lg p-4 sm:p-6">
+      <h2 className="text-lg sm:text-xl font-semibold mb-4">Order Summary</h2>
       
       <div className="space-y-2 mb-4">
         <div className="flex justify-between">

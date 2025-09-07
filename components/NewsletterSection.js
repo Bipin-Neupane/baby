@@ -84,7 +84,7 @@ export default function NewsletterSection() {
           <p className="text-sm text-purple-200 mb-8">
             Join 1k+ parents and get 15% off your first order!
           </p>
-          <form onSubmit={handleSubmit} className="flex gap-4 max-w-md mx-auto">
+          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
             <input
               type="email"
               value={email}
@@ -97,7 +97,7 @@ export default function NewsletterSection() {
             <button 
               type="submit" 
               disabled={loading}
-              className="bg-white text-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="bg-white text-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
             >
               {loading ? 'Subscribing...' : 'Subscribe'}
             </button>

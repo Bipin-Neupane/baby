@@ -8,8 +8,8 @@ export default function CartItem({ item }) {
   const { updateQuantity, removeItem } = useCart()
 
   return (
-    <div className="flex items-center gap-4 p-4 bg-white rounded-lg shadow-sm mb-4">
-      <div className="relative w-24 h-24 rounded-lg overflow-hidden">
+    <div className="flex flex-col sm:flex-row sm:items-center gap-4 p-4 bg-white rounded-lg shadow-sm mb-4">
+      <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-lg overflow-hidden flex-shrink-0">
         <ImageWithFallback
           src={item.product.images?.[0]}
           alt={item.product.name}
@@ -23,7 +23,7 @@ export default function CartItem({ item }) {
       <div className="flex-1">
         <h3 className="font-semibold text-gray-900">{item.product.name}</h3>
         <p className="text-sm text-gray-600">{item.product.brand}</p>
-        <div className="mt-2 flex items-center gap-4">
+        <div className="mt-2 flex items-center justify-between sm:justify-start gap-4">
           <div className="flex items-center border border-gray-300 rounded">
             <button
               onClick={() => updateQuantity(item.product.id, item.quantity - 1)}
@@ -48,7 +48,7 @@ export default function CartItem({ item }) {
         </div>
       </div>
       
-      <div className="text-right">
+      <div className="text-right sm:text-right flex-shrink-0">
         <p className="font-semibold text-lg">
           ${(item.product.price * item.quantity).toFixed(2)}
         </p>
