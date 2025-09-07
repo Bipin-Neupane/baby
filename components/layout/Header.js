@@ -82,7 +82,8 @@ export default function Header() {
           <div className="flex items-center justify-between h-16">
             <Link href="/" className="flex items-center space-x-2">
               <span className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-pink-500 to-purple-600 text-transparent bg-clip-text">
-                Dcube Store
+                <span className="sm:hidden">DS</span>
+                <span className="hidden sm:inline">Dcube Store</span>
               </span>
             </Link>
 

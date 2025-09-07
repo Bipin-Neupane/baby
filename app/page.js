@@ -5,6 +5,9 @@ import NewsletterSection from '@/components/NewsletterSection'
 import { supabase } from '@/lib/supabase'
 import { ShoppingBag, Truck, Shield, Heart } from 'lucide-react'
 
+// Force revalidation every 30 seconds to ensure fresh data
+export const revalidate = 30
+
 async function getFeaturedProducts() {
   const { data, error } = await supabase
     .from('products')
@@ -59,9 +62,6 @@ export default async function HomePage() {
               <div className="flex gap-4">
                 <Link href="/products" className="btn-primary">
                   Shop Now
-                </Link>
-                <Link href="/products?category=new-arrivals" className="btn-secondary">
-                  New Arrivals
                 </Link>
               </div>
               <div className="mt-12 grid grid-cols-3 gap-6">
