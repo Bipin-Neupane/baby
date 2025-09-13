@@ -12,7 +12,6 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Setup Commands:**
 - `npm install` - Install dependencies
-- `node setup-project.js` - Generate complete project structure (if needed)
 
 ## Architecture Overview
 
@@ -61,7 +60,7 @@ STRIPE_SECRET_KEY=your_stripe_secret_key
 **Image Configuration:**
 - Uses Unsplash images by default via `next.config.js`
 - Supports Supabase storage with wildcard pattern
-- See `ADD_IMAGES_GUIDE.md` for image setup options
+- Also supports via.placeholder.com for fallbacks
 
 ## Custom Utilities & Patterns
 
@@ -89,9 +88,15 @@ STRIPE_SECRET_KEY=your_stripe_secret_key
 **Error Handling:** Uses react-hot-toast for user feedback
 
 **File Structure:**
-- `/app` - Next.js 14 app router pages
+- `/app` - Next.js 14 app router pages (includes API routes under `/api`)
 - `/components` - Reusable UI components organized by feature
 - `/contexts` - React context providers  
 - `/hooks` - Custom React hooks
 - `/lib` - Utilities and Supabase client
-- Root-level `.js` files are utility scripts for setup/fixes
+- `*.sql` files - Database schema and migration scripts
+
+**Key Configuration Files:**
+- `jsconfig.json` - Path mapping with `@/*` alias pointing to root
+- `next.config.js` - Image domains configuration for Unsplash, Supabase, and placeholders
+- `tailwind.config.js` - Custom color palette (primary red/pink, secondary blue)
+- `globals.css` - Custom component classes and scrollbar styling
