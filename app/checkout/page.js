@@ -10,6 +10,7 @@ import { CreditCard, Truck, Shield, ChevronRight } from 'lucide-react'
 import toast from 'react-hot-toast'
 import { getEbookIconAndColor } from '@/lib/ebookUtils'
 import PayPalButton from '@/components/payment/PayPalButtonSafe'
+import StripePayment from '@/components/payment/StripePayment'
 
 export default function CheckoutPage() {
   const router = useRouter()
@@ -39,12 +40,6 @@ export default function CheckoutPage() {
     billingState: '',
     billingZip: '',
     billingCountry: 'United States',
-    
-    // Payment
-    cardNumber: '',
-    cardName: '',
-    cardExpiry: '',
-    cardCvv: '',
     
     // Additional
     notes: ''
@@ -114,13 +109,7 @@ export default function CheckoutPage() {
         return true
       
       case 3:
-        if (paymentMethod === 'card') {
-          if (!formData.cardNumber || !formData.cardName || 
-              !formData.cardExpiry || !formData.cardCvv) {
-            toast.error('Please fill in all payment information')
-            return false
-          }
-        }
+        // Stripe validation is handled by the Stripe Elements component
         // PayPal validation is handled by the PayPal component
         return true
       
@@ -232,6 +221,80 @@ export default function CheckoutPage() {
   const handlePayPalError = (error) => {
     console.error('PayPal payment error:', error)
     toast.error('PayPal payment failed. Please try again.')
+    setLoading(false)
+  }
+
+  const handleStripeSuccess = async (paymentDetails) => {
+    setLoading(true)
+    
+    try {
+      const orderData = {
+        order_number: generateOrderNumber(),
+        customer_email: formData.email,
+        customer_name: formData.name,
+        customer_phone: formData.phone,
+        shipping_address: {
+          street: formData.shippingStreet,
+          city: formData.shippingCity,
+          state: formData.shippingState,
+          zip: formData.shippingZip,
+          country: formData.shippingCountry
+        },
+        billing_address: formData.sameAsShipping ? null : {
+          street: formData.billingStreet,
+          city: formData.billingCity,
+          state: formData.billingState,
+          zip: formData.billingZip,
+          country: formData.billingCountry
+        },
+        items: items.map(item => ({
+          product_id: item.product.id,
+          product_name: item.product.name,
+          price: item.product.price,
+          quantity: item.quantity,
+          total: item.product.price * item.quantity
+        })),
+        subtotal,
+        shipping_cost: shipping,
+        tax,
+        total,
+        status: 'completed',
+        payment_method: 'stripe',
+        payment_status: 'paid',
+        payment_details: {
+          stripe_payment_id: paymentDetails.paymentId,
+          stripe_payment_method_id: paymentDetails.paymentMethodId,
+          stripe_transaction_id: paymentDetails.transactionId,
+          receipt_url: paymentDetails.receiptUrl,
+          amount: paymentDetails.amount,
+          currency: paymentDetails.currency
+        },
+        notes: formData.notes
+      }
+
+      const { data, error } = await supabase
+        .from('orders')
+        .insert([orderData])
+        .select()
+        .single()
+
+      if (error) throw error
+
+      clearCart()
+      toast.success('Credit card payment completed successfully!')
+      router.push(`/orders/${data.id}/confirmation`)
+      
+    } catch (error) {
+      console.error('Error processing Stripe payment:', error)
+      toast.error('Failed to process credit card payment. Please contact support.')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleStripeError = (error) => {
+    console.error('Stripe payment error:', error)
+    toast.error('Credit card payment failed. Please try again.')
     setLoading(false)
   }
 
@@ -557,70 +620,26 @@ export default function CheckoutPage() {
                     </div>
                   </div>
 
-                  {/* Credit Card Form */}
+                  {/* Stripe Credit Card Payment */}
                   {paymentMethod === 'card' && (
-                    <div className="space-y-4 mb-6">
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Card Number
-                        </label>
-                        <input
-                          type="text"
-                          name="cardNumber"
-                          value={formData.cardNumber}
-                          onChange={handleChange}
-                          required
-                          className="input"
-                          placeholder="1234 5678 9012 3456"
-                          maxLength="19"
-                        />
+                    <div className="mb-6">
+                      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+                        <p className="text-blue-800 text-sm mb-2">
+                          <strong>Pay with Credit Card</strong>
+                        </p>
+                        <p className="text-blue-700 text-sm">
+                          Secure payment processing powered by Stripe. Your card information is encrypted and secure.
+                        </p>
                       </div>
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Cardholder Name
-                        </label>
-                        <input
-                          type="text"
-                          name="cardName"
-                          value={formData.cardName}
-                          onChange={handleChange}
-                          required
-                          className="input"
-                          placeholder="John Doe"
-                        />
-                      </div>
-                      <div className="grid md:grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Expiry Date
-                          </label>
-                          <input
-                            type="text"
-                            name="cardExpiry"
-                            value={formData.cardExpiry}
-                            onChange={handleChange}
-                            required
-                            className="input"
-                            placeholder="MM/YY"
-                            maxLength="5"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">
-                            CVV
-                          </label>
-                          <input
-                            type="text"
-                            name="cardCvv"
-                            value={formData.cardCvv}
-                            onChange={handleChange}
-                            required
-                            className="input"
-                            placeholder="123"
-                            maxLength="4"
-                          />
-                        </div>
-                      </div>
+                      
+                      <StripePayment
+                        total={total}
+                        items={items}
+                        customerInfo={formData}
+                        onSuccess={handleStripeSuccess}
+                        onError={handleStripeError}
+                        disabled={step !== 3 || loading}
+                      />
                     </div>
                   )}
 
@@ -683,19 +702,15 @@ export default function CheckoutPage() {
                       Back
                     </button>
                     
-                    {paymentMethod === 'card' && (
-                      <button
-                        type="submit"
-                        disabled={loading}
-                        className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
-                      >
-                        {loading ? 'Processing...' : `Place Order ($${total.toFixed(2)})`}
-                      </button>
-                    )}
-                    
-                    {paymentMethod === 'paypal' && (
+{paymentMethod === 'paypal' && (
                       <div className="text-sm text-gray-600 text-center">
                         Complete payment with PayPal above
+                      </div>
+                    )}
+                    
+                    {paymentMethod === 'card' && (
+                      <div className="text-sm text-gray-600 text-center">
+                        Complete payment with credit card above
                       </div>
                     )}
                   </div>
