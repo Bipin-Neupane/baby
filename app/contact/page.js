@@ -84,8 +84,8 @@ export default function ContactPage() {
                   <div>
                     <p className="font-medium">Address</p>
                     <p className="text-gray-600">
-                      18041 NE 9TH CT<br />
-                  NORTH MIAMI BEACH, FL<br />
+                      1021 E Lincolnway Suite #8029<br />
+                  Cheyenne, Wyoming 82001<br />
                   United States
                     </p>
                   </div>
