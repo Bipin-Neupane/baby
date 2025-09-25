@@ -14,8 +14,8 @@ export default function Footer() {
               <div className="flex items-center gap-3">
                 <MapPin className="w-4 h-4 text-purple-400" />
                 <div>
-                  18041 NE 9TH CT<br />
-                  NORTH MIAMI BEACH, FL<br />
+                  1021 E Lincolnway Suite #8029<br />
+                  Cheyenne, Wyoming 82001<br />
                   United States
                 </div>
               </div>
