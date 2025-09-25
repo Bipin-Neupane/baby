@@ -8,6 +8,7 @@ import { calculateCartTotal, generateOrderNumber } from '@/lib/utils'
 import { supabase } from '@/lib/supabase'
 import { CreditCard, Truck, Shield, ChevronRight } from 'lucide-react'
 import toast from 'react-hot-toast'
+import { getEbookIconAndColor } from '@/lib/ebookUtils'
 
 export default function CheckoutPage() {
   const router = useRouter()
@@ -534,18 +535,26 @@ export default function CheckoutPage() {
             <div className="bg-white rounded-lg p-6 shadow-sm sticky top-4">
               <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
               
-              <div className="space-y-3 mb-6">
-                {items.map((item) => (
-                  <div key={item.id} className="flex justify-between text-sm">
-                    <div className="flex-1">
-                      <p className="font-medium text-gray-900">{item.product.name}</p>
-                      <p className="text-gray-600">Qty: {item.quantity}</p>
+              <div className="space-y-4 mb-6">
+                {items.map((item) => {
+                  const { icon: IconComponent, color } = getEbookIconAndColor(item.product.id)
+                  return (
+                    <div key={item.id} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                      <div className="flex-shrink-0">
+                        <div className={`w-12 h-12 bg-gradient-to-r ${color} rounded-lg flex items-center justify-center shadow-sm`}>
+                          <IconComponent className="w-6 h-6 text-white" />
+                        </div>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="font-medium text-gray-900 text-sm truncate">{item.product.name}</p>
+                        <p className="text-gray-600 text-xs">Qty: {item.quantity} • Digital Download</p>
+                      </div>
+                      <div className="text-gray-900 font-medium text-sm">
+                        ${(item.product.price * item.quantity).toFixed(2)}
+                      </div>
                     </div>
-                    <div className="text-gray-900">
-                      ${(item.product.price * item.quantity).toFixed(2)}
-                    </div>
-                  </div>
-                ))}
+                  )
+                })}
               </div>
               
               <div className="space-y-2 py-4 border-t border-gray-200">
@@ -555,13 +564,11 @@ export default function CheckoutPage() {
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-600">Shipping</span>
-                  <span className="text-gray-900">
-                    {shipping === 0 ? 'FREE' : `$${shipping.toFixed(2)}`}
-                  </span>
+                  <span className="text-green-600 font-medium">FREE</span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-600">Tax</span>
-                  <span className="text-gray-900">${tax.toFixed(2)}</span>
+                  <span className="text-green-600 font-medium">$0.00</span>
                 </div>
               </div>
               
@@ -575,7 +582,7 @@ export default function CheckoutPage() {
               <div className="mt-6 p-4 bg-green-50 rounded-lg">
                 <div className="flex items-center text-green-800">
                   <Truck className="w-5 h-5 mr-2" />
-                  <p className="text-sm font-medium">Free shipping on orders over $50!</p>
+                  <p className="text-sm font-medium">🎉 Always free shipping & no taxes on all orders!</p>
                 </div>
               </div>
             </div>

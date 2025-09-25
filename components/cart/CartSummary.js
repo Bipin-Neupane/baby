@@ -19,11 +19,11 @@ export default function CartSummary() {
         </div>
         <div className="flex justify-between">
           <span>Shipping</span>
-          <span>{shipping === 0 ? 'FREE' : `$${shipping.toFixed(2)}`}</span>
+          <span className="text-green-600 font-medium">FREE</span>
         </div>
         <div className="flex justify-between">
           <span>Tax</span>
-          <span>${tax.toFixed(2)}</span>
+          <span className="text-green-600 font-medium">$0.00</span>
         </div>
       </div>
       
@@ -38,8 +38,8 @@ export default function CartSummary() {
         Proceed to Checkout
       </Link>
       
-      <p className="text-sm text-gray-600 mt-4 text-center">
-        Free shipping on orders over $50
+      <p className="text-sm text-green-600 mt-4 text-center font-medium">
+        🎉 Always free shipping & no taxes on all orders!
       </p>
     </div>
   )

@@ -2,22 +2,18 @@
 
 import { useCart } from '@/hooks/useCart'
 import { Trash2 } from 'lucide-react'
-import ImageWithFallback from '@/components/ui/ImageWithFallback'
+import { getEbookIconAndColor } from '@/lib/ebookUtils'
 
 export default function CartItem({ item }) {
   const { updateQuantity, removeItem } = useCart()
+  const { icon: IconComponent, color } = getEbookIconAndColor(item.product.id)
 
   return (
     <div className="flex flex-col sm:flex-row sm:items-center gap-4 p-4 bg-white rounded-lg shadow-sm mb-4">
-      <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-lg overflow-hidden flex-shrink-0">
-        <ImageWithFallback
-          src={item.product.images?.[0]}
-          alt={item.product.name}
-          category={item.product.category}
-          className="object-cover"
-          sizes="96px"
-          fill
-        />
+      <div className="flex-shrink-0">
+        <div className={`w-16 h-16 bg-gradient-to-r ${color} rounded-lg flex items-center justify-center shadow-lg`}>
+          <IconComponent className="w-8 h-8 text-white" />
+        </div>
       </div>
       
       <div className="flex-1">

@@ -100,8 +100,8 @@ export default function Header() {
               <Link href="/products?category=nursery" className="text-gray-700 hover:text-purple-600 transition-colors">
                 Nursery
               </Link>
-              <Link href="/products?category=feeding" className="text-gray-700 hover:text-purple-600 transition-colors">
-                Feeding
+              <Link href="/pricing" className="text-gray-700 hover:text-purple-600 transition-colors font-medium">
+                Care Plans
               </Link>
             </nav>
 
@@ -256,8 +256,8 @@ export default function Header() {
               <Link href="/products?category=nursery" className="block py-2 text-gray-700 hover:text-purple-600">
                 Nursery
               </Link>
-              <Link href="/products?category=feeding" className="block py-2 text-gray-700 hover:text-purple-600">
-                Feeding
+              <Link href="/pricing" className="block py-2 text-gray-700 hover:text-purple-600 font-medium">
+                Care Plans
               </Link>
               <hr className="my-2" />
               {user ? (

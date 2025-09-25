@@ -1,73 +1,92 @@
-import { Truck, Clock, Globe, Shield } from 'lucide-react'
+import { Truck, Clock, Globe, Shield, Star, Zap } from 'lucide-react'
 
 export default function ShippingPage() {
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-gray-900 mb-8">Shipping Information</h1>
+      {/* Limited Time Promotion Banner */}
+      <div className="bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg p-6 mb-8 text-center">
+        <div className="flex items-center justify-center mb-2">
+          <Star className="w-6 h-6 mr-2 fill-current" />
+          <span className="text-xl font-bold">LIMITED TIME OFFER</span>
+          <Star className="w-6 h-6 ml-2 fill-current" />
+        </div>
+        <h2 className="text-2xl font-bold mb-2">🎉 FREE Shipping & NO Taxes on ALL Orders!</h2>
+        <p className="text-lg opacity-90">For a limited time, enjoy completely free shipping and zero taxes on all our digital baby care guides!</p>
+      </div>
+      
+      <h1 className="text-3xl font-bold text-gray-900 mb-8">Shipping & Delivery Information</h1>
       
       <div className="grid md:grid-cols-2 gap-6 mb-12">
-        <div className="bg-purple-50 rounded-lg p-6">
-          <Truck className="w-8 h-8 text-purple-600 mb-3" />
-          <h3 className="text-lg font-semibold mb-2">Free Shipping</h3>
-          <p className="text-gray-600">On all orders over $50 within the United States</p>
+        <div className="bg-purple-50 rounded-lg p-6 border-2 border-purple-200">
+          <Zap className="w-8 h-8 text-purple-600 mb-3" />
+          <h3 className="text-lg font-semibold mb-2 text-purple-800">Instant Download</h3>
+          <p className="text-gray-600">Get your digital ebooks immediately after purchase - no waiting!</p>
         </div>
         
-        <div className="bg-blue-50 rounded-lg p-6">
-          <Clock className="w-8 h-8 text-blue-600 mb-3" />
-          <h3 className="text-lg font-semibold mb-2">Fast Delivery</h3>
-          <p className="text-gray-600">2-5 business days for standard shipping</p>
+        <div className="bg-blue-50 rounded-lg p-6 border-2 border-blue-200">
+          <Globe className="w-8 h-8 text-blue-600 mb-3" />
+          <h3 className="text-lg font-semibold mb-2 text-blue-800">Worldwide Access</h3>
+          <p className="text-gray-600">Available globally - download from anywhere in the world</p>
         </div>
         
-        <div className="bg-green-50 rounded-lg p-6">
-          <Globe className="w-8 h-8 text-green-600 mb-3" />
-          <h3 className="text-lg font-semibold mb-2">International Shipping</h3>
-          <p className="text-gray-600">We ship to over 50 countries worldwide</p>
+        <div className="bg-green-50 rounded-lg p-6 border-2 border-green-200">
+          <Shield className="w-8 h-8 text-green-600 mb-3" />
+          <h3 className="text-lg font-semibold mb-2 text-green-800">Secure Downloads</h3>
+          <p className="text-gray-600">SSL-encrypted downloads and secure payment processing</p>
         </div>
         
-        <div className="bg-pink-50 rounded-lg p-6">
-          <Shield className="w-8 h-8 text-pink-600 mb-3" />
-          <h3 className="text-lg font-semibold mb-2">Secure Packaging</h3>
-          <p className="text-gray-600">All items are carefully packaged for safe delivery</p>
+        <div className="bg-pink-50 rounded-lg p-6 border-2 border-pink-200">
+          <Star className="w-8 h-8 text-pink-600 mb-3" />
+          <h3 className="text-lg font-semibold mb-2 text-pink-800">Lifetime Access</h3>
+          <p className="text-gray-600">Download as many times as you need - yours forever!</p>
         </div>
       </div>
 
       <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
-        <h2 className="text-2xl font-semibold mb-6">Shipping Rates & Delivery Times</h2>
+        <h2 className="text-2xl font-semibold mb-6">Digital Product Delivery</h2>
+        
+        <div className="bg-green-50 rounded-lg p-6 mb-6 border-2 border-green-200">
+          <div className="flex items-center mb-3">
+            <Zap className="w-6 h-6 text-green-600 mr-2" />
+            <h3 className="text-lg font-semibold text-green-800">🎉 Limited Time: Everything FREE!</h3>
+          </div>
+          <p className="text-green-700 font-medium mb-2">All our baby care ebooks are digital products with:</p>
+          <ul className="list-disc list-inside text-green-700 space-y-1">
+            <li><strong>$0 Shipping Cost</strong> - No physical shipping needed!</li>
+            <li><strong>$0 Tax</strong> - No taxes on digital downloads!</li>
+            <li><strong>Instant Access</strong> - Download immediately after purchase</li>
+            <li><strong>Global Availability</strong> - Access from anywhere in the world</li>
+          </ul>
+        </div>
         
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
               <tr className="border-b">
-                <th className="text-left py-3">Shipping Method</th>
+                <th className="text-left py-3">Product Type</th>
+                <th className="text-left py-3">Delivery Method</th>
                 <th className="text-left py-3">Delivery Time</th>
                 <th className="text-left py-3">Cost</th>
               </tr>
             </thead>
             <tbody className="divide-y">
-              <tr>
-                <td className="py-3 font-medium">Standard Shipping</td>
-                <td className="py-3">3-5 business days</td>
-                <td className="py-3">$9.99 (Free over $50)</td>
+              <tr className="bg-green-50">
+                <td className="py-4 font-medium">Essential Baby Care Guide</td>
+                <td className="py-4">Instant Digital Download</td>
+                <td className="py-4 text-green-600 font-semibold">Immediate</td>
+                <td className="py-4 text-green-600 font-semibold">FREE</td>
               </tr>
-              <tr>
-                <td className="py-3 font-medium">Express Shipping</td>
-                <td className="py-3">2-3 business days</td>
-                <td className="py-3">$19.99</td>
+              <tr className="bg-green-50">
+                <td className="py-4 font-medium">Complete Development Guide</td>
+                <td className="py-4">Instant Digital Download</td>
+                <td className="py-4 text-green-600 font-semibold">Immediate</td>
+                <td className="py-4 text-green-600 font-semibold">FREE</td>
               </tr>
-              <tr>
-                <td className="py-3 font-medium">Next Day Delivery</td>
-                <td className="py-3">1 business day</td>
-                <td className="py-3">$39.99</td>
-              </tr>
-              <tr>
-                <td className="py-3 font-medium">International Standard</td>
-                <td className="py-3">7-14 business days</td>
-                <td className="py-3">$29.99+</td>
-              </tr>
-              <tr>
-                <td className="py-3 font-medium">International Express</td>
-                <td className="py-3">3-7 business days</td>
-                <td className="py-3">$59.99+</td>
+              <tr className="bg-green-50">
+                <td className="py-4 font-medium">Ultimate Parenting Collection</td>
+                <td className="py-4">Instant Digital Download</td>
+                <td className="py-4 text-green-600 font-semibold">Immediate</td>
+                <td className="py-4 text-green-600 font-semibold">FREE</td>
               </tr>
             </tbody>
           </table>
@@ -75,43 +94,51 @@ export default function ShippingPage() {
       </div>
 
       <div className="prose prose-gray max-w-none">
-        <h2 className="text-2xl font-semibold mb-4">Shipping Policies</h2>
+        <h2 className="text-2xl font-semibold mb-4">Digital Download Policies</h2>
         
-        <h3 className="text-xl font-semibold mt-6 mb-3">Order Processing</h3>
+        <h3 className="text-xl font-semibold mt-6 mb-3">Instant Access</h3>
         <ul className="list-disc pl-6 space-y-2 text-gray-600">
-          <li>Orders placed before 2 PM EST on business days are processed the same day</li>
-          <li>Orders placed after 2 PM EST or on weekends are processed the next business day</li>
-          <li>You will receive a confirmation email with tracking information once your order ships</li>
-          <li>During peak seasons, processing may take an additional 1-2 business days</li>
+          <li>Digital ebooks are delivered instantly after successful payment processing</li>
+          <li>Download links are sent to your email address within minutes of purchase</li>
+          <li>You can also access your purchases from your account dashboard at any time</li>
+          <li>All downloads are available 24/7 - no business hours restrictions!</li>
         </ul>
         
-        <h3 className="text-xl font-semibold mt-6 mb-3">Shipping Restrictions</h3>
+        <h3 className="text-xl font-semibold mt-6 mb-3">File Formats & Compatibility</h3>
         <ul className="list-disc pl-6 space-y-2 text-gray-600">
-          <li>We currently ship to all 50 US states and select international countries</li>
-          <li>Some products may have shipping restrictions due to size or regulations</li>
-          <li>P.O. Box delivery is available for standard shipping only</li>
-          <li>Signature may be required for high-value orders</li>
+          <li>Our ebooks are available in PDF, EPUB, and MOBI formats</li>
+          <li>Compatible with all devices: smartphones, tablets, e-readers, and computers</li>
+          <li>No special software required - works with standard readers</li>
+          <li>High-quality formatting optimized for easy reading</li>
         </ul>
         
-        <h3 className="text-xl font-semibold mt-6 mb-3">International Shipping</h3>
+        <h3 className="text-xl font-semibold mt-6 mb-3">Global Accessibility</h3>
         <ul className="list-disc pl-6 space-y-2 text-gray-600">
-          <li>International customers are responsible for any customs duties and taxes</li>
-          <li>Delivery times may vary based on customs processing</li>
-          <li>Some products may not be available for international shipping</li>
-          <li>Contact us for shipping quotes to countries not listed</li>
+          <li>Available worldwide - no geographic restrictions</li>
+          <li>No customs, duties, or international fees</li>
+          <li>Same instant delivery whether you're in New York or Tokyo</li>
+          <li>Multi-language support for international customers</li>
         </ul>
         
-        <h3 className="text-xl font-semibold mt-6 mb-3">Tracking Your Order</h3>
+        <h3 className="text-xl font-semibold mt-6 mb-3">Download & Usage Rights</h3>
+        <ul className="list-disc pl-6 space-y-2 text-gray-600">
+          <li>Download as many times as you need from your account</li>
+          <li>Keep forever - no expiration dates or access limits</li>
+          <li>For personal use within your immediate family</li>
+          <li>Print-friendly versions included for reference</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold mt-6 mb-3">Technical Support</h3>
         <p className="text-gray-600 mb-4">
-          Once your order ships, you'll receive an email with your tracking number. 
-          You can also track your order by logging into your account and viewing your order history.
+          Having trouble with your download? We're here to help! Check your email (including spam folder) for download links, 
+          or log into your account to re-download at any time.
         </p>
         
         <h3 className="text-xl font-semibold mt-6 mb-3">Contact Us</h3>
         <p className="text-gray-600">
-          If you have any questions about shipping, please contact our customer service team at 
-          <a href="mailto:shipping@babybloom.com" className="text-purple-600"> contact@dcube.store</a> or 
-          call us at <span className="text-purple-600">+1 (555) 123-4567</span>.
+          If you have any questions about downloads or accessing your ebooks, please contact our support team at 
+          <a href="mailto:support@dcubestore.com" className="text-purple-600"> support@dcubestore.com</a> or 
+          use our live chat for instant assistance.
         </p>
       </div>
     </div>
