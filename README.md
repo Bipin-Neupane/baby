@@ -20,6 +20,36 @@ You can start editing the page by modifying `app/page.js`. The page auto-updates
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Environment Setup
+
+Copy `.env.example` to `.env.local` and update with your credentials:
+
+```bash
+cp .env.example .env.local
+```
+
+## PayPal Integration Testing
+
+This project includes PayPal payment integration with demo credentials for immediate testing:
+
+### Test PayPal Payments
+1. Go to checkout page and select "PayPal" payment method
+2. Use the PayPal sandbox environment (already configured)
+3. Test with these credentials:
+   - **Email**: `sb-buyer@example.com`
+   - **Password**: `testpassword123`
+   - Or use test credit card: `4111 1111 1111 1111`, Exp: `01/30`, CVV: `123`
+
+### PayPal Demo Features
+- ✅ Sandbox environment for safe testing
+- ✅ Demo credentials included in `.env.example`
+- ✅ Full payment flow with order creation
+- ✅ Payment verification and order tracking
+- ✅ Error handling and user feedback
+
+### For Production
+Replace the demo PayPal credentials in `.env.local` with your own from [PayPal Developer Portal](https://developer.paypal.com/developer/applications/).
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
