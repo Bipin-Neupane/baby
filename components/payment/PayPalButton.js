@@ -2,6 +2,7 @@
 
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js'
 import toast from 'react-hot-toast'
+import { useState } from 'react'
 
 export default function PayPalButton({ 
   total, 
@@ -11,6 +12,7 @@ export default function PayPalButton({
   customerInfo,
   disabled = false 
 }) {
+  const [paypalError, setPaypalError] = useState(null)
   const initialOptions = {
     'client-id': process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID,
     'enable-funding': 'venmo',
@@ -118,44 +120,91 @@ export default function PayPalButton({
     console.log('PayPal payment cancelled:', data)
   }
 
-  if (!process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID) {
+  if (paypalError) {
+    return (
+      <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
+        <p className="text-red-800 text-sm font-medium mb-2">
+          PayPal Error
+        </p>
+        <p className="text-red-700 text-sm">
+          {paypalError}
+        </p>
+        <button 
+          onClick={() => setPaypalError(null)}
+          className="mt-2 text-red-600 text-xs underline"
+        >
+          Try Again
+        </button>
+      </div>
+    )
+  }
+
+  if (!process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID === 'your_paypal_client_id_here') {
     return (
       <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-        <p className="text-yellow-800 text-sm">
-          PayPal is not configured. Please set up your PayPal credentials.
+        <p className="text-yellow-800 text-sm font-medium mb-2">
+          PayPal Setup Required
+        </p>
+        <p className="text-yellow-700 text-sm">
+          To enable PayPal payments, please add your PayPal credentials to the environment variables:
+        </p>
+        <ul className="text-yellow-700 text-xs mt-2 list-disc list-inside">
+          <li>NEXT_PUBLIC_PAYPAL_CLIENT_ID</li>
+          <li>PAYPAL_CLIENT_SECRET</li>
+        </ul>
+        <p className="text-yellow-700 text-xs mt-2">
+          Get credentials from: <span className="font-mono">https://developer.paypal.com</span>
         </p>
       </div>
     )
   }
 
-  return (
-    <div className="w-full">
-      <PayPalScriptProvider options={initialOptions}>
-        <div className="relative">
-          <PayPalButtons
-            createOrder={createOrder}
-            onApprove={onApprove}
-            onError={onErrorHandler}
-            onCancel={onCancel}
-            disabled={disabled}
-            style={{
-              layout: 'vertical',
-              color: 'gold',
-              shape: 'rect',
-              label: 'paypal',
-              tagline: false,
-              height: 45
-            }}
-            forceReRender={[total, items, customerInfo, disabled]}
-          />
-          
-          {disabled && (
-            <div className="absolute inset-0 bg-gray-100 bg-opacity-75 rounded-lg flex items-center justify-center">
-              <span className="text-gray-500 text-sm">Complete previous steps to enable PayPal</span>
-            </div>
-          )}
-        </div>
-      </PayPalScriptProvider>
-    </div>
-  )
+  try {
+    return (
+      <div className="w-full">
+        <PayPalScriptProvider 
+          options={initialOptions}
+          onLoadError={(error) => {
+            console.error('PayPal script load error:', error)
+            setPaypalError('Failed to load PayPal. Please try again.')
+          }}
+        >
+          <div className="relative">
+            <PayPalButtons
+              createOrder={createOrder}
+              onApprove={onApprove}
+              onError={onErrorHandler}
+              onCancel={onCancel}
+              disabled={disabled}
+              style={{
+                layout: 'vertical',
+                color: 'gold',
+                shape: 'rect',
+                label: 'paypal',
+                tagline: false,
+                height: 45
+              }}
+              forceReRender={[total, items, customerInfo, disabled]}
+            />
+            
+            {disabled && (
+              <div className="absolute inset-0 bg-gray-100 bg-opacity-75 rounded-lg flex items-center justify-center">
+                <span className="text-gray-500 text-sm">Complete previous steps to enable PayPal</span>
+              </div>
+            )}
+          </div>
+        </PayPalScriptProvider>
+      </div>
+    )
+  } catch (error) {
+    console.error('PayPal component error:', error)
+    setPaypalError('PayPal component failed to load')
+    return (
+      <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
+        <p className="text-red-800 text-sm">
+          PayPal is temporarily unavailable. Please use credit card payment.
+        </p>
+      </div>
+    )
+  }
 }

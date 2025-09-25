@@ -9,7 +9,7 @@ import { supabase } from '@/lib/supabase'
 import { CreditCard, Truck, Shield, ChevronRight } from 'lucide-react'
 import toast from 'react-hot-toast'
 import { getEbookIconAndColor } from '@/lib/ebookUtils'
-import PayPalButton from '@/components/payment/PayPalButton'
+import PayPalButton from '@/components/payment/PayPalButtonSafe'
 
 export default function CheckoutPage() {
   const router = useRouter()
