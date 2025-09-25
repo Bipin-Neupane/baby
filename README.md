@@ -28,9 +28,17 @@ Copy `.env.example` to `.env.local` and update with your credentials:
 cp .env.example .env.local
 ```
 
-## PayPal Integration Testing
+## Payment Integration Testing
 
-This project includes PayPal payment integration with demo credentials for immediate testing:
+This project includes both Stripe and PayPal payment integrations with demo credentials for immediate testing:
+
+### Test Stripe Credit Card Payments
+1. Go to checkout page and select "Credit Card" payment method
+2. Use Stripe's test mode (already configured)
+3. Test with these credit cards:
+   - **Visa**: `4242 4242 4242 4242`, Exp: any future date, CVV: any 3 digits
+   - **Mastercard**: `5555 5555 5555 4444`, Exp: any future date, CVV: any 3 digits
+   - **Declined Card**: `4000 0000 0000 0002`, Exp: any future date, CVV: any 3 digits
 
 ### Test PayPal Payments
 1. Go to checkout page and select "PayPal" payment method
@@ -40,15 +48,18 @@ This project includes PayPal payment integration with demo credentials for immed
    - **Password**: `testpassword123`
    - Or use test credit card: `4111 1111 1111 1111`, Exp: `01/30`, CVV: `123`
 
-### PayPal Demo Features
-- ✅ Sandbox environment for safe testing
-- ✅ Demo credentials included in `.env.example`
-- ✅ Full payment flow with order creation
-- ✅ Payment verification and order tracking
-- ✅ Error handling and user feedback
+### Demo Features
+- ✅ **Stripe Test Mode**: Official Stripe demo keys for safe testing
+- ✅ **PayPal Sandbox**: Sandbox environment for safe testing
+- ✅ **Demo credentials included** in `.env.example`
+- ✅ **Full payment flows** with order creation and tracking
+- ✅ **Payment verification** and comprehensive error handling
+- ✅ **Dual payment options**: Credit Card (Stripe) and PayPal
 
 ### For Production
-Replace the demo PayPal credentials in `.env.local` with your own from [PayPal Developer Portal](https://developer.paypal.com/developer/applications/).
+Replace the demo credentials in `.env.local` with your own:
+- **Stripe**: Get keys from [Stripe Dashboard](https://dashboard.stripe.com/apikeys)
+- **PayPal**: Get keys from [PayPal Developer Portal](https://developer.paypal.com/developer/applications/)
 
 ## Learn More
 
