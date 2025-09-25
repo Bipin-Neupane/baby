@@ -9,6 +9,7 @@ import { supabase } from '@/lib/supabase'
 import { CreditCard, Truck, Shield, ChevronRight } from 'lucide-react'
 import toast from 'react-hot-toast'
 import { getEbookIconAndColor } from '@/lib/ebookUtils'
+import PayPalButton from '@/components/payment/PayPalButton'
 
 export default function CheckoutPage() {
   const router = useRouter()
@@ -16,6 +17,7 @@ export default function CheckoutPage() {
   const { user } = useAuth()
   const [loading, setLoading] = useState(false)
   const [step, setStep] = useState(1)
+  const [paymentMethod, setPaymentMethod] = useState('card') // 'card' or 'paypal'
   
   const [formData, setFormData] = useState({
     // Customer Info
@@ -112,11 +114,14 @@ export default function CheckoutPage() {
         return true
       
       case 3:
-        if (!formData.cardNumber || !formData.cardName || 
-            !formData.cardExpiry || !formData.cardCvv) {
-          toast.error('Please fill in all payment information')
-          return false
+        if (paymentMethod === 'card') {
+          if (!formData.cardNumber || !formData.cardName || 
+              !formData.cardExpiry || !formData.cardCvv) {
+            toast.error('Please fill in all payment information')
+            return false
+          }
         }
+        // PayPal validation is handled by the PayPal component
         return true
       
       default:
@@ -132,6 +137,102 @@ export default function CheckoutPage() {
 
   const prevStep = () => {
     setStep(step - 1)
+  }
+
+  const handlePayPalSuccess = async (paymentDetails) => {
+    setLoading(true)
+    
+    try {
+      // Verify payment with PayPal API
+      const verifyResponse = await fetch('/api/paypal', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          orderId: paymentDetails.paymentId,
+          captureId: paymentDetails.captureId
+        })
+      })
+
+      if (!verifyResponse.ok) {
+        throw new Error('Payment verification failed')
+      }
+
+      const verificationResult = await verifyResponse.json()
+
+      if (!verificationResult.verified) {
+        throw new Error('Payment could not be verified')
+      }
+
+      const orderData = {
+        order_number: generateOrderNumber(),
+        customer_email: formData.email,
+        customer_name: formData.name,
+        customer_phone: formData.phone,
+        shipping_address: {
+          street: formData.shippingStreet,
+          city: formData.shippingCity,
+          state: formData.shippingState,
+          zip: formData.shippingZip,
+          country: formData.shippingCountry
+        },
+        billing_address: formData.sameAsShipping ? null : {
+          street: formData.billingStreet,
+          city: formData.billingCity,
+          state: formData.billingState,
+          zip: formData.billingZip,
+          country: formData.billingCountry
+        },
+        items: items.map(item => ({
+          product_id: item.product.id,
+          product_name: item.product.name,
+          price: item.product.price,
+          quantity: item.quantity,
+          total: item.product.price * item.quantity
+        })),
+        subtotal,
+        shipping_cost: shipping,
+        tax,
+        total,
+        status: 'completed',
+        payment_method: 'paypal',
+        payment_status: 'paid',
+        payment_details: {
+          paypal_payment_id: paymentDetails.paymentId,
+          paypal_payer_id: paymentDetails.payerId,
+          paypal_transaction_id: paymentDetails.transactionId,
+          paypal_capture_id: paymentDetails.captureId,
+          payer_email: paymentDetails.payerEmail,
+          payer_name: paymentDetails.payerName
+        },
+        notes: formData.notes
+      }
+
+      const { data, error } = await supabase
+        .from('orders')
+        .insert([orderData])
+        .select()
+        .single()
+
+      if (error) throw error
+
+      clearCart()
+      toast.success('PayPal payment completed successfully!')
+      router.push(`/orders/${data.id}/confirmation`)
+      
+    } catch (error) {
+      console.error('Error processing PayPal payment:', error)
+      toast.error('Failed to process PayPal payment. Please contact support.')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handlePayPalError = (error) => {
+    console.error('PayPal payment error:', error)
+    toast.error('PayPal payment failed. Please try again.')
+    setLoading(false)
   }
 
   const handleSubmit = async (e) => {
@@ -420,85 +521,149 @@ export default function CheckoutPage() {
               {step === 3 && (
                 <div className="bg-white rounded-lg p-6 shadow-sm">
                   <h2 className="text-xl font-semibold mb-6">Payment Information</h2>
-                  <div className="space-y-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Card Number
-                      </label>
-                      <input
-                        type="text"
-                        name="cardNumber"
-                        value={formData.cardNumber}
-                        onChange={handleChange}
-                        required
-                        className="input"
-                        placeholder="1234 5678 9012 3456"
-                        maxLength="19"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Cardholder Name
-                      </label>
-                      <input
-                        type="text"
-                        name="cardName"
-                        value={formData.cardName}
-                        onChange={handleChange}
-                        required
-                        className="input"
-                        placeholder="John Doe"
-                      />
-                    </div>
+                  
+                  {/* Payment Method Selection */}
+                  <div className="mb-6">
+                    <label className="block text-sm font-medium text-gray-700 mb-3">
+                      Choose Payment Method
+                    </label>
                     <div className="grid md:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Expiry Date
-                        </label>
-                        <input
-                          type="text"
-                          name="cardExpiry"
-                          value={formData.cardExpiry}
-                          onChange={handleChange}
-                          required
-                          className="input"
-                          placeholder="MM/YY"
-                          maxLength="5"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                          CVV
-                        </label>
-                        <input
-                          type="text"
-                          name="cardCvv"
-                          value={formData.cardCvv}
-                          onChange={handleChange}
-                          required
-                          className="input"
-                          placeholder="123"
-                          maxLength="4"
-                        />
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Order Notes (Optional)
-                      </label>
-                      <textarea
-                        name="notes"
-                        value={formData.notes}
-                        onChange={handleChange}
-                        rows="3"
-                        className="input"
-                        placeholder="Special instructions for your order..."
-                      />
+                      <button
+                        type="button"
+                        onClick={() => setPaymentMethod('card')}
+                        className={`p-4 border-2 rounded-lg flex items-center justify-center transition-all ${
+                          paymentMethod === 'card' 
+                            ? 'border-purple-500 bg-purple-50 text-purple-700' 
+                            : 'border-gray-200 hover:border-gray-300'
+                        }`}
+                      >
+                        <CreditCard className="w-5 h-5 mr-2" />
+                        Credit Card
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setPaymentMethod('paypal')}
+                        className={`p-4 border-2 rounded-lg flex items-center justify-center transition-all ${
+                          paymentMethod === 'paypal' 
+                            ? 'border-blue-500 bg-blue-50 text-blue-700' 
+                            : 'border-gray-200 hover:border-gray-300'
+                        }`}
+                      >
+                        <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h8.418c2.508 0 4.718.382 5.718 1.801.999 1.419.999 3.192.999 4.615 0 3.646-2.426 6.126-6.034 6.126H10.27l-1.205 7.795a.641.641 0 0 1-.633.74H7.076z"/>
+                        </svg>
+                        PayPal
+                      </button>
                     </div>
                   </div>
+
+                  {/* Credit Card Form */}
+                  {paymentMethod === 'card' && (
+                    <div className="space-y-4 mb-6">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          Card Number
+                        </label>
+                        <input
+                          type="text"
+                          name="cardNumber"
+                          value={formData.cardNumber}
+                          onChange={handleChange}
+                          required
+                          className="input"
+                          placeholder="1234 5678 9012 3456"
+                          maxLength="19"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          Cardholder Name
+                        </label>
+                        <input
+                          type="text"
+                          name="cardName"
+                          value={formData.cardName}
+                          onChange={handleChange}
+                          required
+                          className="input"
+                          placeholder="John Doe"
+                        />
+                      </div>
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                            Expiry Date
+                          </label>
+                          <input
+                            type="text"
+                            name="cardExpiry"
+                            value={formData.cardExpiry}
+                            onChange={handleChange}
+                            required
+                            className="input"
+                            placeholder="MM/YY"
+                            maxLength="5"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                            CVV
+                          </label>
+                          <input
+                            type="text"
+                            name="cardCvv"
+                            value={formData.cardCvv}
+                            onChange={handleChange}
+                            required
+                            className="input"
+                            placeholder="123"
+                            maxLength="4"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* PayPal Payment */}
+                  {paymentMethod === 'paypal' && (
+                    <div className="mb-6">
+                      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+                        <p className="text-blue-800 text-sm mb-2">
+                          <strong>Pay with PayPal</strong>
+                        </p>
+                        <p className="text-blue-700 text-sm">
+                          You'll be redirected to PayPal to complete your payment securely. 
+                          No need to enter credit card details here.
+                        </p>
+                      </div>
+                      
+                      <PayPalButton
+                        total={total}
+                        items={items}
+                        customerInfo={formData}
+                        onSuccess={handlePayPalSuccess}
+                        onError={handlePayPalError}
+                        disabled={step !== 3 || loading}
+                      />
+                    </div>
+                  )}
                   
-                  <div className="mt-6 flex items-center justify-center space-x-6 py-4 border-t border-gray-200">
+                  {/* Order Notes */}
+                  <div className="mb-6">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Order Notes (Optional)
+                    </label>
+                    <textarea
+                      name="notes"
+                      value={formData.notes}
+                      onChange={handleChange}
+                      rows="3"
+                      className="input"
+                      placeholder="Special instructions for your order..."
+                    />
+                  </div>
+                  
+                  <div className="flex items-center justify-center space-x-6 py-4 border-t border-gray-200">
                     <div className="flex items-center text-sm text-gray-600">
                       <Shield className="w-4 h-4 mr-1 text-green-600" />
                       SSL Secured
@@ -517,13 +682,22 @@ export default function CheckoutPage() {
                     >
                       Back
                     </button>
-                    <button
-                      type="submit"
-                      disabled={loading}
-                      className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                      {loading ? 'Processing...' : `Place Order ($${total.toFixed(2)})`}
-                    </button>
+                    
+                    {paymentMethod === 'card' && (
+                      <button
+                        type="submit"
+                        disabled={loading}
+                        className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        {loading ? 'Processing...' : `Place Order ($${total.toFixed(2)})`}
+                      </button>
+                    )}
+                    
+                    {paymentMethod === 'paypal' && (
+                      <div className="text-sm text-gray-600 text-center">
+                        Complete payment with PayPal above
+                      </div>
+                    )}
                   </div>
                 </div>
               )}
