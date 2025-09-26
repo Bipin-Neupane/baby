@@ -7,7 +7,7 @@ export default function TermsPage() {
         
         <p className="mb-6">
           Welcome to Dcube Store, part of DCUBE TECH LLC. These Terms of Service ("Terms") govern your use of our website 
-          and services. By accessing or using BabyBloom, you agree to be bound by these Terms.
+          and services. By accessing or using Dcube Store, you agree to be bound by these Terms.
         </p>
         
         <h2 className="text-2xl font-semibold mt-8 mb-4 text-gray-900">1. Acceptance of Terms</h2>
@@ -31,7 +31,7 @@ export default function TermsPage() {
         
         <h2 className="text-2xl font-semibold mt-8 mb-4 text-gray-900">3. Products and Services</h2>
         <p className="mb-4">
-          BabyBloom specializes in high-quality baby products including clothing, toys, nursery 
+          Dcube Store specializes in high-quality baby products including clothing, toys, nursery 
           items, feeding accessories, and safety equipment. All products are carefully selected 
           and meet applicable safety standards.
         </p>
@@ -94,7 +94,7 @@ export default function TermsPage() {
         <h2 className="text-2xl font-semibold mt-8 mb-4 text-gray-900">8. Intellectual Property</h2>
         <p className="mb-4">
           The content on this website, including text, graphics, logos, images, and software, 
-          is owned by BabyBloom or our licensors and is protected by copyright and trademark laws.
+          is owned by Dcube Store or our licensors and is protected by copyright and trademark laws.
         </p>
         <p className="mb-4">
           You may not reproduce, distribute, modify, or create derivative works from any content 
@@ -110,7 +110,7 @@ export default function TermsPage() {
         
         <h2 className="text-2xl font-semibold mt-8 mb-4 text-gray-900">10. Limitation of Liability</h2>
         <p className="mb-4">
-          To the maximum extent permitted by law, BabyBloom shall not be liable for any indirect, 
+          To the maximum extent permitted by law, Dcube Store shall not be liable for any indirect, 
           incidental, special, consequential, or punitive damages, including loss of profits, 
           data, or other intangible losses.
         </p>
@@ -121,7 +121,7 @@ export default function TermsPage() {
         
         <h2 className="text-2xl font-semibold mt-8 mb-4 text-gray-900">11. Indemnification</h2>
         <p className="mb-4">
-          You agree to indemnify and hold BabyBloom harmless from any claims, damages, or expenses 
+          You agree to indemnify and hold Dcube Store harmless from any claims, damages, or expenses 
           arising from your use of our services, violation of these Terms, or infringement of any 
           third-party rights.
         </p>
