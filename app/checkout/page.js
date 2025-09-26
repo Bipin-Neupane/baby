@@ -378,20 +378,20 @@ export default function CheckoutPage() {
         
         {/* Progress Steps */}
         <div className="flex items-center justify-center mb-8">
-          <div className="flex items-center space-x-4">
-            <div className={`flex items-center justify-center w-10 h-10 rounded-full ${
+          <div className="flex items-center space-x-2 sm:space-x-4">
+            <div className={`flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full text-sm sm:text-base ${
               step >= 1 ? 'bg-purple-600 text-white' : 'bg-gray-300 text-gray-600'
             }`}>
               1
             </div>
-            <ChevronRight className="w-5 h-5 text-gray-400" />
-            <div className={`flex items-center justify-center w-10 h-10 rounded-full ${
+            <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
+            <div className={`flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full text-sm sm:text-base ${
               step >= 2 ? 'bg-purple-600 text-white' : 'bg-gray-300 text-gray-600'
             }`}>
               2
             </div>
-            <ChevronRight className="w-5 h-5 text-gray-400" />
-            <div className={`flex items-center justify-center w-10 h-10 rounded-full ${
+            <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
+            <div className={`flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full text-sm sm:text-base ${
               step >= 3 ? 'bg-purple-600 text-white' : 'bg-gray-300 text-gray-600'
             }`}>
               3
@@ -399,12 +399,12 @@ export default function CheckoutPage() {
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="order-2 lg:order-1 lg:col-span-2">
             <form onSubmit={handleSubmit}>
               {/* Step 1: Customer Information */}
               {step === 1 && (
-                <div className="bg-white rounded-lg p-6 shadow-sm">
+                <div className="bg-white rounded-lg p-4 sm:p-6 shadow-sm">
                   <h2 className="text-xl font-semibold mb-6">Customer Information</h2>
                   <div className="space-y-4">
                     <div>
@@ -456,7 +456,7 @@ export default function CheckoutPage() {
                     <button
                       type="button"
                       onClick={nextStep}
-                      className="btn-primary"
+                      className="btn-primary w-full sm:w-auto"
                     >
                       Continue to Shipping
                     </button>
@@ -466,7 +466,7 @@ export default function CheckoutPage() {
 
               {/* Step 2: Shipping & Billing - Same as before */}
               {step === 2 && (
-                <div className="bg-white rounded-lg p-6 shadow-sm">
+                <div className="bg-white rounded-lg p-4 sm:p-6 shadow-sm">
                   <h2 className="text-xl font-semibold mb-6">Shipping Address</h2>
                   <div className="space-y-4">
                     <div>
@@ -561,18 +561,18 @@ export default function CheckoutPage() {
                     </div>
                   </div>
                   
-                  <div className="mt-6 flex justify-between">
+                  <div className="mt-6 flex flex-col sm:flex-row justify-between gap-3 sm:gap-0">
                     <button
                       type="button"
                       onClick={prevStep}
-                      className="btn-secondary"
+                      className="btn-secondary w-full sm:w-auto order-2 sm:order-1"
                     >
                       Back
                     </button>
                     <button
                       type="button"
                       onClick={nextStep}
-                      className="btn-primary"
+                      className="btn-primary w-full sm:w-auto order-1 sm:order-2"
                     >
                       Continue to Payment
                     </button>
@@ -582,7 +582,7 @@ export default function CheckoutPage() {
 
               {/* Step 3: Payment - Same as before */}
               {step === 3 && (
-                <div className="bg-white rounded-lg p-6 shadow-sm">
+                <div className="bg-white rounded-lg p-4 sm:p-6 shadow-sm">
                   <h2 className="text-xl font-semibold mb-6">Payment Information</h2>
                   
                   {/* Payment Method Selection */}
@@ -590,29 +590,29 @@ export default function CheckoutPage() {
                     <label className="block text-sm font-medium text-gray-700 mb-3">
                       Choose Payment Method
                     </label>
-                    <div className="grid md:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <button
                         type="button"
                         onClick={() => setPaymentMethod('card')}
-                        className={`p-4 border-2 rounded-lg flex items-center justify-center transition-all ${
+                        className={`p-4 border-2 rounded-lg flex items-center justify-center transition-all text-sm sm:text-base ${
                           paymentMethod === 'card' 
                             ? 'border-purple-500 bg-purple-50 text-purple-700' 
                             : 'border-gray-200 hover:border-gray-300'
                         }`}
                       >
-                        <CreditCard className="w-5 h-5 mr-2" />
+                        <CreditCard className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                         Credit Card
                       </button>
                       <button
                         type="button"
                         onClick={() => setPaymentMethod('paypal')}
-                        className={`p-4 border-2 rounded-lg flex items-center justify-center transition-all ${
+                        className={`p-4 border-2 rounded-lg flex items-center justify-center transition-all text-sm sm:text-base ${
                           paymentMethod === 'paypal' 
                             ? 'border-blue-500 bg-blue-50 text-blue-700' 
                             : 'border-gray-200 hover:border-gray-300'
                         }`}
                       >
-                        <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                        <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
                           <path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h8.418c2.508 0 4.718.382 5.718 1.801.999 1.419.999 3.192.999 4.615 0 3.646-2.426 6.126-6.034 6.126H10.27l-1.205 7.795a.641.641 0 0 1-.633.74H7.076z"/>
                         </svg>
                         PayPal
@@ -693,26 +693,28 @@ export default function CheckoutPage() {
                     </div>
                   </div>
                   
-                  <div className="mt-6 flex justify-between">
+                  <div className="mt-6 flex flex-col sm:flex-row justify-between gap-3 sm:gap-0">
                     <button
                       type="button"
                       onClick={prevStep}
-                      className="btn-secondary"
+                      className="btn-secondary w-full sm:w-auto order-2 sm:order-1"
                     >
                       Back
                     </button>
                     
-{paymentMethod === 'paypal' && (
-                      <div className="text-sm text-gray-600 text-center">
-                        Complete payment with PayPal above
-                      </div>
-                    )}
-                    
-                    {paymentMethod === 'card' && (
-                      <div className="text-sm text-gray-600 text-center">
-                        Complete payment with credit card above
-                      </div>
-                    )}
+                    <div className="order-1 sm:order-2 text-center">
+                      {paymentMethod === 'paypal' && (
+                        <div className="text-sm text-gray-600">
+                          Complete payment with PayPal above
+                        </div>
+                      )}
+                      
+                      {paymentMethod === 'card' && (
+                        <div className="text-sm text-gray-600">
+                          Complete payment with credit card above
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               )}
@@ -720,8 +722,8 @@ export default function CheckoutPage() {
           </div>
 
           {/* Order Summary Sidebar */}
-          <div className="lg:col-span-1">
-            <div className="bg-white rounded-lg p-6 shadow-sm sticky top-4">
+          <div className="order-1 lg:order-2 lg:col-span-1">
+            <div className="bg-white rounded-lg p-4 sm:p-6 shadow-sm lg:sticky lg:top-4">
               <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
               
               <div className="space-y-4 mb-6">
@@ -769,9 +771,9 @@ export default function CheckoutPage() {
               </div>
 
               <div className="mt-6 p-4 bg-green-50 rounded-lg">
-                <div className="flex items-center text-green-800">
-                  <Truck className="w-5 h-5 mr-2" />
-                  <p className="text-sm font-medium">🎉 Always free shipping & no taxes on all orders!</p>
+                <div className="flex items-start text-green-800">
+                  <Truck className="w-5 h-5 mr-2 mt-0.5 flex-shrink-0" />
+                  <p className="text-sm font-medium leading-relaxed">🎉 Always free shipping & no taxes on all orders!</p>
                 </div>
               </div>
             </div>
