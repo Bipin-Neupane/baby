@@ -6,7 +6,7 @@ export default function TermsPage() {
         <p className="mb-6 text-sm text-gray-600">Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long' })}</p>
         
         <p className="mb-6">
-          Welcome to Dcube Store! These Terms of Service ("Terms") govern your use of our website 
+          Welcome to Dcube Store, part of DCUBE TECH LLC. These Terms of Service ("Terms") govern your use of our website 
           and services. By accessing or using BabyBloom, you agree to be bound by these Terms.
         </p>
         
@@ -164,7 +164,7 @@ export default function TermsPage() {
         </div>
         
         <p className="text-sm text-gray-600 mt-8">
-          These Terms of Service constitute the entire agreement between you and BabyBloom regarding 
+          These Terms of Service constitute the entire agreement between you and Dcube Store regarding 
           your use of our services and supersede all prior agreements and understandings.
         </p>
       </div>
