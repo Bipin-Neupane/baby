@@ -11,7 +11,7 @@ export default function PricingSection() {
   const ebookProducts = [
     {
       id: 'starter-ebook',
-      name: 'Essential Baby Care Guide',
+      name: 'Basic',
       tagline: 'Perfect for New Parents',
       icon: Baby,
       color: 'from-blue-400 to-blue-600',
@@ -46,7 +46,7 @@ export default function PricingSection() {
     },
     {
       id: 'premium-ebook',
-      name: 'Complete Baby Development Guide',
+      name: 'Standard',
       tagline: 'Most Popular Choice',
       icon: Heart,
       color: 'from-pink-400 to-pink-600',
@@ -81,7 +81,7 @@ export default function PricingSection() {
     },
     {
       id: 'expert-ebook',
-      name: 'Ultimate Parenting Mastery Collection',
+      name: 'Premium',
       tagline: 'Complete Digital Library',
       icon: Crown,
       color: 'from-purple-400 to-purple-600',
