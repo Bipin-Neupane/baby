@@ -25,8 +25,8 @@ export default function ShippingPage() {
         
         <div className="bg-blue-50 rounded-lg p-6 border-2 border-blue-200">
           <Globe className="w-8 h-8 text-blue-600 mb-3" />
-          <h3 className="text-lg font-semibold mb-2 text-blue-800">Worldwide Delivery</h3>
-          <p className="text-gray-600">We ship to all locations across the globe</p>
+          <h3 className="text-lg font-semibold mb-2 text-blue-800">Nationwide Delivery</h3>
+          <p className="text-gray-600">We ship to all locations across the country</p>
         </div>
         
         <div className="bg-green-50 rounded-lg p-6 border-2 border-green-200">
@@ -58,7 +58,47 @@ export default function ShippingPage() {
             <li><strong>Tracking Included</strong> - Track your package every step of the way</li>
           </ul>
         </div>
-    
+        
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead>
+              <tr className="border-b">
+                <th className="text-left py-3">Product Category</th>
+                <th className="text-left py-3">Processing Time</th>
+                <th className="text-left py-3">Delivery Time</th>
+                <th className="text-left py-3">Shipping Cost</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y">
+              <tr className="bg-green-50">
+                <td className="py-4 font-medium">Baby Clothing</td>
+                <td className="py-4">1-2 business days</td>
+                <td className="py-4 text-green-600 font-semibold">3-7 business days</td>
+                <td className="py-4 text-green-600 font-semibold">FREE</td>
+              </tr>
+              <tr className="bg-green-50">
+                <td className="py-4 font-medium">Baby Toys</td>
+                <td className="py-4">1-2 business days</td>
+                <td className="py-4 text-green-600 font-semibold">3-7 business days</td>
+                <td className="py-4 text-green-600 font-semibold">FREE</td>
+              </tr>
+              <tr className="bg-green-50">
+                <td className="py-4 font-medium">Nursery Items</td>
+                <td className="py-4">1-2 business days</td>
+                <td className="py-4 text-green-600 font-semibold">3-7 business days</td>
+                <td className="py-4 text-green-600 font-semibold">FREE</td>
+              </tr>
+              <tr className="bg-green-50">
+                <td className="py-4 font-medium">Feeding Essentials</td>
+                <td className="py-4">1-2 business days</td>
+                <td className="py-4 text-green-600 font-semibold">3-7 business days</td>
+                <td className="py-4 text-green-600 font-semibold">FREE</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
       <div className="prose prose-gray max-w-none">
         <h2 className="text-2xl font-semibold mb-4">Shipping Policies</h2>
         
