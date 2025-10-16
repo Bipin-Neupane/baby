@@ -100,8 +100,8 @@ export default function Header() {
               <Link href="/products?category=nursery" className="text-gray-700 hover:text-purple-600 transition-colors">
                 Nursery
               </Link>
-              <Link href="/pricing" className="text-gray-700 hover:text-purple-600 transition-colors font-medium">
-                Care Plans
+              <Link href="/products?category=feeding" className="text-gray-700 hover:text-purple-600 transition-colors">
+                Feeding
               </Link>
             </nav>
 
