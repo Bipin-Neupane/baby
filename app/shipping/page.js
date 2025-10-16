@@ -25,8 +25,8 @@ export default function ShippingPage() {
         
         <div className="bg-blue-50 rounded-lg p-6 border-2 border-blue-200">
           <Globe className="w-8 h-8 text-blue-600 mb-3" />
-          <h3 className="text-lg font-semibold mb-2 text-blue-800">Nationwide Delivery</h3>
-          <p className="text-gray-600">We ship to all locations across the country</p>
+          <h3 className="text-lg font-semibold mb-2 text-blue-800">Worldwide Delivery</h3>
+          <p className="text-gray-600">We ship to all locations across the globe</p>
         </div>
         
         <div className="bg-green-50 rounded-lg p-6 border-2 border-green-200">
@@ -39,63 +39,6 @@ export default function ShippingPage() {
           <Star className="w-8 h-8 text-pink-600 mb-3" />
           <h3 className="text-lg font-semibold mb-2 text-pink-800">Order Tracking</h3>
           <p className="text-gray-600">Track your order from dispatch to delivery</p>
-        </div>
-      </div>
-
-      <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
-        <h2 className="text-2xl font-semibold mb-6">Shipping Rates & Delivery Times</h2>
-        
-        <div className="bg-green-50 rounded-lg p-6 mb-6 border-2 border-green-200">
-          <div className="flex items-center mb-3">
-            <Zap className="w-6 h-6 text-green-600 mr-2" />
-            <h3 className="text-lg font-semibold text-green-800">🎉 Limited Time: Free Shipping & No Taxes!</h3>
-          </div>
-          <p className="text-green-700 font-medium mb-2">All baby products ship with:</p>
-          <ul className="list-disc list-inside text-green-700 space-y-1">
-            <li><strong>$0 Shipping Cost</strong> - Free shipping on all orders</li>
-            <li><strong>$0 Tax</strong> - No taxes applied at checkout</li>
-            <li><strong>Fast Processing</strong> - Orders processed within 1-2 business days</li>
-            <li><strong>Tracking Included</strong> - Track your package every step of the way</li>
-          </ul>
-        </div>
-        
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead>
-              <tr className="border-b">
-                <th className="text-left py-3">Product Category</th>
-                <th className="text-left py-3">Processing Time</th>
-                <th className="text-left py-3">Delivery Time</th>
-                <th className="text-left py-3">Shipping Cost</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y">
-              <tr className="bg-green-50">
-                <td className="py-4 font-medium">Baby Clothing</td>
-                <td className="py-4">1-2 business days</td>
-                <td className="py-4 text-green-600 font-semibold">3-7 business days</td>
-                <td className="py-4 text-green-600 font-semibold">FREE</td>
-              </tr>
-              <tr className="bg-green-50">
-                <td className="py-4 font-medium">Baby Toys</td>
-                <td className="py-4">1-2 business days</td>
-                <td className="py-4 text-green-600 font-semibold">3-7 business days</td>
-                <td className="py-4 text-green-600 font-semibold">FREE</td>
-              </tr>
-              <tr className="bg-green-50">
-                <td className="py-4 font-medium">Nursery Items</td>
-                <td className="py-4">1-2 business days</td>
-                <td className="py-4 text-green-600 font-semibold">3-7 business days</td>
-                <td className="py-4 text-green-600 font-semibold">FREE</td>
-              </tr>
-              <tr className="bg-green-50">
-                <td className="py-4 font-medium">Feeding Essentials</td>
-                <td className="py-4">1-2 business days</td>
-                <td className="py-4 text-green-600 font-semibold">3-7 business days</td>
-                <td className="py-4 text-green-600 font-semibold">FREE</td>
-              </tr>
-            </tbody>
-          </table>
         </div>
       </div>
 
