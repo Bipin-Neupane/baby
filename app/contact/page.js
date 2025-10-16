@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Phone, Mail, MapPin, Clock, Send, Facebook, Instagram, Twitter } from 'lucide-react'
+import { BriefcaseBusiness, Phone, Mail, MapPin, Clock, Send, Facebook, Instagram, Twitter } from 'lucide-react'
 import toast from 'react-hot-toast'
 
 export default function ContactPage() {
@@ -76,6 +76,16 @@ export default function ContactPage() {
                   <div>
                     <p className="font-medium">Email</p>
                     <p className="text-gray-600">contact@dcube.store</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start">
+                  <BriefcaseBusiness className="w-5 h-5 text-purple-600 mt-1 mr-3" />
+                  <div>
+                    <p className="font-medium">Company</p>
+                    <p className="text-gray-600">
+                      DCUBE TECH LLC
+                    </p>
                   </div>
                 </div>
                 
