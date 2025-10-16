@@ -1,4 +1,4 @@
-import { BriefcaseBusiness, MapPin, Phone, Facebook, Instagram, Twitter } from 'lucide-react'
+import {BriefcaseBusiness, MapPin, Phone, Facebook, Instagram, Twitter } from 'lucide-react'
 
 export default function Footer() {
   return (
@@ -12,7 +12,7 @@ export default function Footer() {
             </p>
             <div className="text-gray-400 text-sm space-y-3">
               <div className="flex items-center gap-3">
-                <BreifcaseBusiness className="w-4 h-4 text-purple-400" />
+                <BriefcaseBusiness className="w-4 h-4 text-purple-400" />
                 <div>
                   DCUBE TECH LLC
                 </div>
