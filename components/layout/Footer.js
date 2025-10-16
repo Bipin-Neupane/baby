@@ -1,4 +1,4 @@
-import { MapPin, Phone, Facebook, Instagram, Twitter } from 'lucide-react'
+import { BriefcaseBusiness, MapPin, Phone, Facebook, Instagram, Twitter } from 'lucide-react'
 
 export default function Footer() {
   return (
@@ -11,6 +11,12 @@ export default function Footer() {
               Your trusted partner for premium baby products. Quality, safety, and comfort for your little ones.
             </p>
             <div className="text-gray-400 text-sm space-y-3">
+              <div className="flex items-center gap-3">
+                <BreifcaseBusiness className="w-4 h-4 text-purple-400" />
+                <div>
+                  DCUBE TECH LLC
+                </div>
+              </div>
               <div className="flex items-center gap-3">
                 <MapPin className="w-4 h-4 text-purple-400" />
                 <div>
