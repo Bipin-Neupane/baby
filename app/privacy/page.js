@@ -237,7 +237,7 @@ export default function PrivacyPage() {
              Privacy Team</h4>
           <div className="space-y-2">
             <p><strong>Email:</strong> contact@dcube.store</p>
-            <p><strong>Phone:</strong> +1 (555) 123-4567</p>
+            <p><strong>Phone:</strong> +1925 231 7524</p>
           </div>
         </div>
         
