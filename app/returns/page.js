@@ -110,7 +110,7 @@ export default function ReturnsPage() {
         <p className="text-gray-600">
           If you have any questions about returns or exchanges, our customer service team is 
           here to help! Contact us at <a href="mailto:returns@dcubestore.com" className="text-purple-600">contact@dcubestore.com</a> or 
-          call <span className="text-purple-600">+1 (555) 123-4567</span>.
+          call <span className="text-purple-600">+1925 231 7524</span>.
         </p>
       </div>
     </div>
