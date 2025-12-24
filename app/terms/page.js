@@ -160,7 +160,7 @@ export default function TermsPage() {
         <div className="bg-gray-50 p-4 rounded-lg mb-4">
           <p className="mb-2"><strong>Dcube Store Customer Service</strong></p>
           <p className="mb-1">Email: contact@dcube.store</p>
-          <p className="mb-1">Phone: +1 (555) 123-4567</p>
+          <p className="mb-1">Phone: +1925 231 7524</p>
         </div>
         
         <p className="text-sm text-gray-600 mt-8">
